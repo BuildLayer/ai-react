@@ -1,20 +1,13 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import dts from "vite-plugin-dts";
 
 export default defineConfig({
   plugins: [
     react(),
-    {
-      name: "generate-types",
-      generateBundle() {
-        // Generate basic .d.ts file
-        this.emitFile({
-          type: "asset",
-          fileName: "index.d.ts",
-          source: `export * from "../src/index";`,
-        });
-      },
-    },
+    dts({
+      insertTypesEntry: true,
+    }),
   ],
   build: {
     lib: {

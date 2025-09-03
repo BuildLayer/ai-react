@@ -1,11 +1,47 @@
 {
   "name": "@buildlayer/ai-react",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "React UI components for AI chat assistants",
+  "keywords": [
+    "react",
+    "ai",
+    "chat",
+    "ui",
+    "components",
+    "openai",
+    "anthropic",
+    "ollama",
+    "mistral",
+    "grok",
+    "llm",
+    "chatbot",
+    "conversation",
+    "streaming",
+    "tools",
+    "function-calling",
+    "session-management",
+    "state-management",
+    "headless",
+    "sdk",
+    "typescript",
+    "javascript",
+    "tailwind",
+    "buildlayer",
+    "ai-ui",
+    "react-hooks",
+    "context"
+  ],
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles": "./dist/style.css"
+  },
   "license": "MIT",
   "engines": {
     "node": ">=18"
@@ -22,36 +58,6 @@
   "bugs": {
     "url": "https://github.com/BuildLayer/ai-react/issues"
   },
-  "keywords": [
-    "ai",
-    "react",
-    "chat",
-    "ui",
-    "components",
-    "openai",
-    "anthropic",
-    "mistral",
-    "grok",
-    "llm",
-    "chatbot",
-    "ai-ui",
-    "buildlayer",
-    "typescript",
-    "javascript",
-    "tailwind",
-    "react-components",
-    "chat-interface",
-    "conversation",
-    "streaming",
-    "tools"
-  ],
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    },
-    "./styles": "./dist/style.css"
-  },
   "files": [
     "dist"
   ],
@@ -65,11 +71,12 @@
     "build-storybook": "storybook build"
   },
   "peerDependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0"
   },
   "dependencies": {
+    "@buildlayer/ai-cli": "^0.1.1",
     "@buildlayer/ai-core": "^0.1.1",
     "@tailwindcss/postcss": "^4.1.12",
     "clsx": "^2.0.0",
@@ -88,12 +95,16 @@
     "@types/react-dom": "^18.0.0",
     "@types/react-router-dom": "^5.0.0",
     "@vitejs/plugin-react": "^4.7.0",
+    "happy-dom": "^18.0.1",
     "jsdom": "^24.1.3",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
     "storybook": "^7.0.0",
     "tsup": "^8.0.0",
     "typescript": "^5.4.0",
     "vite": "^5.4.19",
+    "vite-plugin-dts": "^4.3.0",
     "vitest": "^1.0.0"
   }
 }

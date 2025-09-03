@@ -45,12 +45,7 @@ export function MessageList({
 
   // Auto-scroll to bottom when messages change
   useEffect(() => {
-    if (
-      messagesEndRef.current &&
-      typeof messagesEndRef.current.scrollIntoView === "function"
-    ) {
-      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-    }
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   return (

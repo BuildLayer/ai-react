@@ -1,5 +1,9 @@
+export { App } from "./App";
+export { Navigation } from "./Navigation";
+export { ThemeSwitcher } from "./ThemeSwitcher";
 export { LoadingSpinner } from "./LoadingSpinner";
 export { ChatPanel } from "./ChatPanel";
+export { ChatHeader } from "./ChatHeader";
 export { MessageList } from "./MessageList";
 export { Composer } from "./Composer";
 export { ThemeProvider, useTheme, useThemeAwareStyle } from "./ThemeProvider";

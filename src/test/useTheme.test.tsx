@@ -44,7 +44,7 @@ describe("useTheme", () => {
     const { result } = renderHook(() => useTheme(), { wrapper });
 
     expect(result.current.theme).toBe("light");
-    expect(localStorageMock.getItem).toHaveBeenCalledWith("ai-ui-sdk-theme");
+    expect(localStorageMock.getItem).toHaveBeenCalledWith("ai-react-theme");
   });
 
   it("should set theme and save to localStorage", () => {
@@ -56,7 +56,7 @@ describe("useTheme", () => {
 
     expect(result.current.theme).toBe("light");
     expect(localStorageMock.setItem).toHaveBeenCalledWith(
-      "ai-ui-sdk-theme",
+      "ai-react-theme",
       "light"
     );
   });

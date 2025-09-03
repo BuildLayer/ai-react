@@ -1,33 +1,61 @@
 import React from "react";
 import { MessageList } from "./MessageList";
 import { Composer } from "./Composer";
+import { ChatHeader } from "./ChatHeader";
+import { useApp } from "../contexts/AppContext";
 import type { ChatController } from "@buildlayer/ai-core";
 
 export interface ChatPanelProps {
   chatController: ChatController;
+  model?: string;
   className?: string;
-  title?: string;
 }
 
 export function ChatPanel({
   chatController,
+  model,
   className = "",
-  title = "Chat",
 }: ChatPanelProps) {
+  const { state } = useApp();
+
+  // Dynamic disabled logic - no hardcoded values
+  const getDisabledState = () => {
+    const reasons: string[] = [];
+
+    if (!model || model.trim() === "") {
+      reasons.push("Model not selected");
+    }
+
+    if (!state.isConnected) {
+      reasons.push("Not connected to AI service");
+    }
+
+    if (state.error) {
+      reasons.push(`Connection error: ${state.error}`);
+    }
+
+    return {
+      isDisabled: reasons.length > 0,
+      reasons,
+    };
+  };
+
+  const disabledState = getDisabledState();
+
+  const handleClearHistory = () => {
+    chatController.clearHistory();
+  };
+
   return (
     <div
       className={`flex flex-col h-full max-w-4xl mx-auto ${className}`}
       style={{ height: "100%" }}
     >
-      {/* Simple header */}
-      <div className="flex items-center justify-between p-4 border-b">
-        <h1 className="text-lg font-semibold">{title}</h1>
-        <span className="text-sm text-gray-500">
-          {chatController.messages.length} messages
-        </span>
-      </div>
+      <ChatHeader
+        chatController={chatController}
+        onClearHistory={handleClearHistory}
+      />
 
-      {/* Messages area */}
       <div
         className="flex-1 overflow-hidden overflow-y-auto"
         style={{ minHeight: 0 }}
@@ -35,9 +63,13 @@ export function ChatPanel({
         <MessageList chatController={chatController} />
       </div>
 
-      {/* Composer */}
       <div className="p-4">
-        <Composer chatController={chatController} />
+        <Composer
+          chatController={chatController}
+          model={model}
+          disabled={disabledState.isDisabled}
+          disabledReasons={disabledState.reasons}
+        />
       </div>
     </div>
   );

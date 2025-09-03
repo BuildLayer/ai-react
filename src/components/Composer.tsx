@@ -3,16 +3,20 @@ import type { ChatController } from "@buildlayer/ai-core";
 
 export interface ComposerProps {
   chatController: ChatController;
+  model?: string;
   className?: string;
   placeholder?: string;
   disabled?: boolean;
+  disabledReasons?: string[];
 }
 
 export function Composer({
   chatController,
+  model,
   className = "",
   placeholder = "Type your message...",
   disabled = false,
+  disabledReasons = [],
 }: ComposerProps) {
   const [input, setInput] = useState("");
   const [status, setStatus] = useState(chatController.status);
@@ -37,8 +41,9 @@ export function Composer({
 
     const message = input.trim();
     setInput("");
+
     try {
-      await chatController.send(message);
+      await chatController.send(message, { model });
     } catch (error) {
       console.error("Error sending message:", error);
     }
@@ -69,6 +74,13 @@ export function Composer({
       <div
         style={{ position: "relative", display: "inline-block", width: "100%" }}
       >
+        {/* Show disabled reasons below the input */}
+        {disabled && disabledReasons.length > 0 && (
+          <div className="mt-2 text-xs text-red-400 flex items-center gap-1">
+            <span>{disabledReasons.join(" • ")}</span>
+          </div>
+        )}
+
         <textarea
           ref={textareaRef}
           value={input}
@@ -139,7 +151,11 @@ export function Composer({
                 e.currentTarget.style.borderColor = "#00b894";
               }
             }}
-            title={disabled ? "Input disabled" : undefined}
+            title={
+              disabled && disabledReasons.length > 0
+                ? disabledReasons.join(", ")
+                : undefined
+            }
           >
             {isStreaming ? "..." : "Send"}
           </button>

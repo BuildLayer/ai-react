@@ -35,9 +35,6 @@ const mockChatController = {
   exportHistory: () => [],
   clearHistory: () => {},
   subscribe: () => () => {},
-  registerTool: () => {},
-  unregisterTool: () => {},
-  getTools: () => [],
 };
 
 const meta: Meta<typeof ChatPanel> = {
@@ -48,9 +45,9 @@ const meta: Meta<typeof ChatPanel> = {
   },
   tags: ["autodocs"],
   argTypes: {
-    title: {
-      control: "text",
-      description: "Chat panel title",
+    showToolDrawer: {
+      control: "boolean",
+      description: "Whether to show the tool drawer",
     },
   },
 };
@@ -61,14 +58,14 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     chatController: mockChatController,
-    title: "AI Assistant",
+    showToolDrawer: true,
   },
 };
 
-export const WithCustomTitle: Story = {
+export const WithoutToolDrawer: Story = {
   args: {
     chatController: mockChatController,
-    title: "My Custom Chat",
+    showToolDrawer: false,
   },
 };
 
@@ -83,7 +80,7 @@ export const WithToolCall: Story = {
         args: { location: "New York" },
       },
     },
-    title: "AI Assistant",
+    showToolDrawer: true,
   },
 };
 
@@ -93,6 +90,6 @@ export const Streaming: Story = {
       ...mockChatController,
       status: "streaming" as const,
     },
-    title: "AI Assistant",
+    showToolDrawer: true,
   },
 };

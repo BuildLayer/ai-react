@@ -40,7 +40,9 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./styles": "./dist/style.css"
+    "./styles": "./dist/style.css",
+    "./dist/style.css": "./dist/style.css",
+    "./css": "./dist/style.css"
   },
   "license": "MIT",
   "engines": {
@@ -49,7 +51,10 @@
   "publishConfig": {
     "access": "public"
   },
-  "sideEffects": false,
+  "sideEffects": [
+    "./dist/style.css",
+    "./dist/index.js"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/BuildLayer/ai-react"

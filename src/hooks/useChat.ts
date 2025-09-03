@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback, useState } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import type {
   ChatController,
   Message,
@@ -8,13 +8,11 @@ import type {
 
 export function useChat(chatController: ChatController) {
   const unsubscribeRef = useRef<(() => void) | null>(null);
-  const [, forceUpdate] = useState({});
 
   useEffect(() => {
     // Subscribe to chat state changes
     unsubscribeRef.current = chatController.subscribe(() => {
       // Trigger re-render when state changes
-      forceUpdate({});
     });
 
     return () => {

@@ -1,361 +1,360 @@
-@import "tailwindcss";
+.dark-theme {
+  @theme {
+    /* Space station dark theme - gray to dark black */
+    --color-black-50: #f5f5f5;
+    --color-black-100: #e0e0e0;
+    --color-black-200: #b3b3b3;
+    --color-black-300: #808080;
+    --color-black-400: #4d4d4d;
+    --color-black-500: #333333;
+    --color-black-600: #262626;
+    --color-black-700: #1a1a1a;
+    --color-black-800: #0d0d0d;
+    --color-black-900: #080808;
+    --color-black-950: #000000;
 
-@theme {
-  /* Space station dark theme - gray to dark black */
-  --color-black-50: #f5f5f5;
-  --color-black-100: #e0e0e0;
-  --color-black-200: #b3b3b3;
-  --color-black-300: #808080;
-  --color-black-400: #4d4d4d;
-  --color-black-500: #333333;
-  --color-black-600: #262626;
-  --color-black-700: #1a1a1a;
-  --color-black-800: #0d0d0d;
-  --color-black-900: #080808;
-  --color-black-950: #000000;
+    /* Space station accent - teal/cyan */
+    --color-ai-400: #00d4aa;
+    --color-ai-500: #00b894;
+    --color-ai-600: #00a085;
 
-  /* Space station accent - teal/cyan */
-  --color-ai-400: #00d4aa;
-  --color-ai-500: #00b894;
-  --color-ai-600: #00a085;
+    /* Semantic colors - minimal */
+    --color-success: #22c55e;
+    --color-warning: #f59e0b;
+    --color-error: #ef4444;
 
-  /* Semantic colors - minimal */
-  --color-success: #22c55e;
-  --color-warning: #f59e0b;
-  --color-error: #ef4444;
+    /* Font families */
+    --font-family-sans: "JetBrains Mono", -apple-system, BlinkMacSystemFont,
+      "Segoe UI", Roboto, sans-serif;
+    --font-family-mono: "JetBrains Mono", "SF Mono", Monaco, Consolas, monospace;
 
-  /* Font families */
-  --font-family-sans:
-    "JetBrains Mono", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    sans-serif;
-  --font-family-mono: "JetBrains Mono", "SF Mono", Monaco, Consolas, monospace;
+    /* No shadows - flat design */
+    --shadow-none: none;
+  }
 
-  /* No shadows - flat design */
-  --shadow-none: none;
-}
+  /* Global styles - applied automatically to all elements */
+  * {
+    box-sizing: border-box;
+  }
 
-/* Global styles - applied automatically to all elements */
-* {
-  box-sizing: border-box;
-}
+  /* Reset only specific elements, not all */
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
 
-/* Reset only specific elements, not all */
-html,
-body {
-  margin: 0;
-  padding: 0;
-}
+  html {
+    background-color: var(--color-black-950);
+    color: var(--color-black-100);
+    font-family: var(--font-family-sans);
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-html {
-  background-color: var(--color-black-950);
-  color: var(--color-black-100);
-  font-family: var(--font-family-sans);
-  font-size: 14px;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  /* Custom scrollbar - thin and transparent */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
 
-/* Custom scrollbar - thin and transparent */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
 
-::-webkit-scrollbar-track {
-  background: transparent;
-}
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--color-black-600);
+    border-radius: 0;
+  }
 
-::-webkit-scrollbar-thumb {
-  background-color: var(--color-black-600);
-  border-radius: 0;
-}
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-black-500);
+  }
 
-::-webkit-scrollbar-thumb:hover {
-  background-color: var(--color-black-500);
-}
+  /* Firefox scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-black-600) transparent;
+  }
 
-/* Firefox scrollbar */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-black-600) transparent;
-}
+  body {
+    background-color: var(--color-black-950);
+    color: var(--color-black-100);
+    font-family: var(--font-family-sans);
+    font-size: 14px;
+    line-height: 1.5;
+  }
 
-body {
-  background-color: var(--color-black-950);
-  color: var(--color-black-100);
-  font-family: var(--font-family-sans);
-  font-size: 14px;
-  line-height: 1.5;
-}
+  /* Typography */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--color-black-50);
+    font-weight: 600;
+    line-height: 1.25;
+    margin: 0;
+  }
 
-/* Typography */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: var(--color-black-50);
-  font-weight: 600;
-  line-height: 1.25;
-  margin: 0;
-}
+  h1 {
+    font-size: 24px;
+  }
+  h2 {
+    font-size: 20px;
+  }
+  h3 {
+    font-size: 18px;
+  }
+  h4 {
+    font-size: 16px;
+  }
+  h5 {
+    font-size: 14px;
+  }
+  h6 {
+    font-size: 12px;
+  }
 
-h1 {
-  font-size: 24px;
-}
-h2 {
-  font-size: 20px;
-}
-h3 {
-  font-size: 18px;
-}
-h4 {
-  font-size: 16px;
-}
-h5 {
-  font-size: 14px;
-}
-h6 {
-  font-size: 12px;
-}
+  p {
+    color: var(--color-black-200);
+    margin: 0;
+  }
 
-p {
-  color: var(--color-black-200);
-  margin: 0;
-}
+  /* Links */
+  a {
+    color: var(--color-ai-400);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
 
-/* Links */
-a {
-  color: var(--color-ai-400);
-  text-decoration: none;
-  transition: color 0.15s ease;
-}
+  a:hover {
+    color: var(--color-ai-500);
+  }
 
-a:hover {
-  color: var(--color-ai-500);
-}
+  /* Buttons */
+  button {
+    background-color: var(--color-black-950);
+    border: 1px solid var(--color-black-600);
+    color: var(--color-black-100);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 16px;
+    transition: all 0.15s ease;
+  }
 
-/* Buttons */
-button {
-  background-color: var(--color-black-950);
-  border: 1px solid var(--color-black-600);
-  color: var(--color-black-100);
-  cursor: pointer;
-  font-family: inherit;
-  font-size: 14px;
-  font-weight: 500;
-  padding: 8px 16px;
-  transition: all 0.15s ease;
-}
+  button:hover {
+    background-color: var(--color-black-800);
+    border-color: var(--color-black-600);
+  }
 
-button:hover {
-  background-color: var(--color-black-800);
-  border-color: var(--color-black-600);
-}
+  button:active {
+    background-color: var(--color-black-800);
+  }
 
-button:active {
-  background-color: var(--color-black-800);
-}
+  button:disabled {
+    background-color: var(--color-black-950);
+    border-color: var(--color-black-950);
+    color: var(--color-black-500);
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
 
-button:disabled {
-  background-color: var(--color-black-950);
-  border-color: var(--color-black-950);
-  color: var(--color-black-500);
-  cursor: not-allowed;
-  opacity: 0.6;
-}
+  /* Primary button */
+  button.primary {
+    background-color: var(--color-ai-500);
+    border-color: var(--color-ai-500);
+    color: white;
+  }
 
-/* Primary button */
-button.primary {
-  background-color: var(--color-ai-500);
-  border-color: var(--color-ai-500);
-  color: white;
-}
+  button.primary:hover {
+    background-color: var(--color-ai-600);
+    border-color: var(--color-ai-600);
+  }
 
-button.primary:hover {
-  background-color: var(--color-ai-600);
-  border-color: var(--color-ai-600);
-}
+  /* Input fields */
+  input,
+  textarea,
+  select {
+    background-color: var(--color-black-800);
+    border: 1px solid var(--color-black-600);
+    color: var(--color-black-100);
+    font-family: inherit;
+    font-size: 14px;
+    padding: 8px 12px;
+    transition: border-color 0.15s ease;
+  }
 
-/* Input fields */
-input,
-textarea,
-select {
-  background-color: var(--color-black-800);
-  border: 1px solid var(--color-black-600);
-  color: var(--color-black-100);
-  font-family: inherit;
-  font-size: 14px;
-  padding: 8px 12px;
-  transition: border-color 0.15s ease;
-}
+  input:focus,
+  textarea:focus,
+  select:focus {
+    border-color: var(--color-ai-500);
+    outline: none;
+  }
 
-input:focus,
-textarea:focus,
-select:focus {
-  border-color: var(--color-ai-500);
-  outline: none;
-}
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--color-black-500);
+  }
 
-input::placeholder,
-textarea::placeholder {
-  color: var(--color-black-500);
-}
+  /* Cards and containers */
+  .card,
+  .container,
+  .panel {
+    background-color: var(--color-black-800);
+    border: 1px solid var(--color-black-700);
+    padding: 16px;
+  }
 
-/* Cards and containers */
-.card,
-.container,
-.panel {
-  background-color: var(--color-black-800);
-  border: 1px solid var(--color-black-700);
-  padding: 16px;
-}
+  /* Navigation */
+  nav {
+    background-color: var(--color-black-950);
+    border-bottom: 1px solid var(--color-black-700);
+    padding: 0px 16px;
+  }
 
-/* Navigation */
-nav {
-  background-color: var(--color-black-950);
-  border-bottom: 1px solid var(--color-black-700);
-  padding: 0px 16px;
-}
+  nav a {
+    color: var(--color-black-300);
+    font-weight: 500;
+    margin-right: 24px;
+    padding: 8px 0;
+    transition: color 0.15s ease;
+  }
 
-nav a {
-  color: var(--color-black-300);
-  font-weight: 500;
-  margin-right: 24px;
-  padding: 8px 0;
-  transition: color 0.15s ease;
-}
+  nav a:hover,
+  nav a.active {
+    color: var(--color-black-100);
+  }
 
-nav a:hover,
-nav a.active {
-  color: var(--color-black-100);
-}
+  /* Lists */
+  ul,
+  ol {
+    color: var(--color-black-200);
+    padding-left: 20px;
+  }
 
-/* Lists */
-ul,
-ol {
-  color: var(--color-black-200);
-  padding-left: 20px;
-}
+  li {
+    margin: 4px 0;
+  }
 
-li {
-  margin: 4px 0;
-}
+  /* Code */
+  code,
+  pre {
+    background-color: var(--color-black-900);
+    border: 1px solid var(--color-black-800);
+    color: var(--color-black-100);
+    font-family: var(--font-family-mono);
+    font-size: 13px;
+  }
 
-/* Code */
-code,
-pre {
-  background-color: var(--color-black-900);
-  border: 1px solid var(--color-black-800);
-  color: var(--color-black-100);
-  font-family: var(--font-family-mono);
-  font-size: 13px;
-}
+  code {
+    padding: 2px 6px;
+  }
 
-code {
-  padding: 2px 6px;
-}
+  pre {
+    padding: 12px;
+    overflow-x: auto;
+  }
 
-pre {
-  padding: 12px;
-  overflow-x: auto;
-}
+  /* Tables */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
 
-/* Tables */
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
+  th,
+  td {
+    border: 1px solid var(--color-black-700);
+    padding: 8px 12px;
+    text-align: left;
+  }
 
-th,
-td {
-  border: 1px solid var(--color-black-700);
-  padding: 8px 12px;
-  text-align: left;
-}
+  th {
+    background-color: var(--color-black-900);
+    color: var(--color-black-100);
+    font-weight: 600;
+  }
 
-th {
-  background-color: var(--color-black-900);
-  color: var(--color-black-100);
-  font-weight: 600;
-}
+  td {
+    background-color: var(--color-black-900);
+    color: var(--color-black-200);
+  }
 
-td {
-  background-color: var(--color-black-900);
-  color: var(--color-black-200);
-}
+  /* Scrollbars */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
 
-/* Scrollbars */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
+  ::-webkit-scrollbar-track {
+    background: var(--color-black-900);
+  }
 
-::-webkit-scrollbar-track {
-  background: var(--color-black-900);
-}
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-black-700);
+  }
 
-::-webkit-scrollbar-thumb {
-  background: var(--color-black-700);
-}
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-black-600);
+  }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-black-600);
-}
+  /* Selection */
+  ::selection {
+    background-color: var(--color-ai-500);
+    color: white;
+  }
 
-/* Selection */
-::selection {
-  background-color: var(--color-ai-500);
-  color: white;
-}
+  /* Focus outline */
+  :focus-visible {
+    outline: 2px solid var(--color-ai-500);
+    outline-offset: 2px;
+  }
 
-/* Focus outline */
-:focus-visible {
-  outline: 2px solid var(--color-ai-500);
-  outline-offset: 2px;
-}
+  /* Utility classes for overrides */
+  .text-primary {
+    color: var(--color-black-100) !important;
+  }
+  .text-secondary {
+    color: var(--color-black-300) !important;
+  }
+  .text-muted {
+    color: var(--color-black-500) !important;
+  }
+  .text-accent {
+    color: var(--color-ai-400) !important;
+  }
+  .text-success {
+    color: var(--color-success) !important;
+  }
+  .text-warning {
+    color: var(--color-warning) !important;
+  }
+  .text-error {
+    color: var(--color-error) !important;
+  }
 
-/* Utility classes for overrides */
-.text-primary {
-  color: var(--color-black-100) !important;
-}
-.text-secondary {
-  color: var(--color-black-300) !important;
-}
-.text-muted {
-  color: var(--color-black-500) !important;
-}
-.text-accent {
-  color: var(--color-ai-400) !important;
-}
-.text-success {
-  color: var(--color-success) !important;
-}
-.text-warning {
-  color: var(--color-warning) !important;
-}
-.text-error {
-  color: var(--color-error) !important;
-}
+  .bg-primary {
+    background-color: var(--color-black-950) !important;
+  }
+  .bg-secondary {
+    background-color: var(--color-black-800) !important;
+  }
+  .bg-tertiary {
+    background-color: var(--color-black-700) !important;
+  }
 
-.bg-primary {
-  background-color: var(--color-black-950) !important;
-}
-.bg-secondary {
-  background-color: var(--color-black-800) !important;
-}
-.bg-tertiary {
-  background-color: var(--color-black-700) !important;
-}
-
-.border-primary {
-  border-color: var(--color-black-700) !important;
-}
-.border-secondary {
-  border-color: var(--color-black-600) !important;
-}
-.border-accent {
-  border-color: var(--color-ai-500) !important;
+  .border-primary {
+    border-color: var(--color-black-700) !important;
+  }
+  .border-secondary {
+    border-color: var(--color-black-600) !important;
+  }
+  .border-accent {
+    border-color: var(--color-ai-500) !important;
+  }
 }

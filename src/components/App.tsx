@@ -5,9 +5,6 @@ import { ChatPanel } from "./ChatPanel";
 import { Navigation } from "./Navigation";
 import { LoadingSpinner } from "./LoadingSpinner";
 import { AppProvider, useApp } from "../contexts/AppContext";
-import "../tailwind.css";
-import "../themes/dark-theme.css";
-import "../themes/light-theme.css";
 
 export interface AppProps {
   className?: string;

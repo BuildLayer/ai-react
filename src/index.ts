@@ -1,7 +1,5 @@
 // Import Tailwind CSS
-import "./tailwind.css";
-import "./themes/dark-theme.css";
-import "./themes/light-theme.css";
+import "./index.css";
 
 // Hooks
 export { useChat } from "./hooks/useChat";

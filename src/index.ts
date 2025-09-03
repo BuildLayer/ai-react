@@ -2,7 +2,7 @@ import "./index.css";
 
 // Hooks
 export { useChat } from "./hooks/useChat";
-export { useChatWithSessions } from "./hooks/useChatWithSessions";
+export { useChatWithSingleSession } from "./hooks/useChatWithSingleSession";
 export { useSessionManager } from "./hooks/useSessionManager";
 
 // Components

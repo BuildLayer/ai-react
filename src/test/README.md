@@ -8,7 +8,7 @@ This directory contains comprehensive tests for the AI UI SDK React package.
 src/test/
 ├── setup.ts                        # React test setup and mocks
 ├── useChat.test.tsx                # useChat hook tests
-├── useChatWithSessions.test.tsx    # Session management hook tests
+├── useChatWithSingleSession.test.tsx    # Single session management hook tests
 ├── components.test.tsx             # React component tests
 └── README.md                      # This file
 ```
@@ -29,17 +29,17 @@ Tests the core useChat hook functionality:
 - **Action Functions**: All hook action functions
 - **State Subscription**: State change notifications
 
-#### useChatWithSessions Hook Tests (`useChatWithSessions.test.tsx`)
+#### useChatWithSingleSession Hook Tests (`useChatWithSingleSession.test.tsx`)
 
-Tests session management functionality:
+Tests single session management functionality:
 
-- **Session Creation**: Creating new chat sessions
-- **Session Switching**: Switching between sessions
-- **Session Deletion**: Removing sessions
-- **Session Updates**: Updating session properties
-- **Session Persistence**: localStorage integration
+- **Session Creation**: Creating initial chat session
+- **Session Persistence**: localStorage integration for single session
+- **Session Updates**: Updating session properties and messages
 - **Session Import/Export**: Session data management
-- **Multi-session State**: Managing multiple sessions
+- **Session Clearing**: Clearing session messages
+- **Auto-save**: Automatic message saving
+- **Throttling**: Preventing excessive save operations
 
 ### 2. Component Tests (`components.test.tsx`)
 
@@ -56,14 +56,14 @@ Tests all React components:
 #### ChatHeader Component
 
 - **Rendering**: Header displays correctly
-- **Session Information**: Session ID and metadata display
-- **Export Functionality**: History export functionality
+- **Session Information**: Message count display
+- **Clear Session**: Clear session functionality
 
 #### MessageList Component
 
 - **Empty State**: No messages display
 - **Message Display**: Various message types
-- **Message Types**: User, assistant, tool messages
+- **Message Types**: User and assistant messages
 - **Timestamps**: Message timing information
 
 #### Composer Component
@@ -75,14 +75,12 @@ Tests all React components:
 - **Loading States**: Disabled state during operations
 - **Multiline Input**: Multiline text handling
 
-#### ToolDrawer Component
+#### ThemeSwitcher Component
 
-- **Tool Display**: Available tools listing
-- **Tool Schema**: Tool schema information
-- **Tool Execution**: Tool execution functionality
-- **Tool Results**: Tool execution results display
-- **Error Handling**: Tool execution errors
-- **Empty State**: No tools available state
+- **Theme Display**: Current theme indication
+- **Theme Switching**: Toggle between light and dark themes
+- **Theme Persistence**: Theme preference storage
+- **Theme Integration**: Integration with ThemeProvider
 
 ## Running Tests
 
@@ -98,7 +96,7 @@ pnpm test
 ```bash
 # Run hook tests
 pnpm test useChat.test.tsx
-pnpm test useChatWithSessions.test.tsx
+pnpm test useChatWithSingleSession.test.tsx
 
 # Run component tests
 pnpm test components.test.tsx
@@ -208,14 +206,15 @@ describe('ChatPanel', () => {
 
 ```typescript
 import { renderHook, act } from '@testing-library/react';
-import { useChat } from '../hooks/useChat';
+import { useChatWithSingleSession } from '../hooks/useChatWithSingleSession';
 
-describe('useChat', () => {
-  it('should provide chat functionality', () => {
-    const { result } = renderHook(() => useChat(mockChatStore));
+describe('useChatWithSingleSession', () => {
+  it('should provide single session functionality', () => {
+    const { result } = renderHook(() => useChatWithSingleSession(mockChatStore));
     
-    expect(result.current.messages).toEqual([]);
-    expect(typeof result.current.send).toBe('function');
+    expect(result.current.session).toBeDefined();
+    expect(typeof result.current.clearSession).toBe('function');
+    expect(typeof result.current.exportSession).toBe('function');
   });
 });
 ```

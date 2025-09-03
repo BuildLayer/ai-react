@@ -2,7 +2,20 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    {
+      name: "generate-types",
+      generateBundle() {
+        // Generate basic .d.ts file
+        this.emitFile({
+          type: "asset",
+          fileName: "index.d.ts",
+          source: `export * from "../src/index";`,
+        });
+      },
+    },
+  ],
   build: {
     lib: {
       entry: "src/index.ts",

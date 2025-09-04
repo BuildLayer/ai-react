@@ -61,11 +61,11 @@ export function useChat(chatController: ChatController) {
 
   return {
     // State
-    sessionId: chatController.sessionId,
-    messages: chatController.messages,
-    status: chatController.status,
-    currentToolCall: chatController.currentToolCall,
-    error: chatController.error,
+    sessionId: chatController?.sessionId || "",
+    messages: chatController?.messages || [],
+    status: chatController?.status || "idle",
+    currentToolCall: chatController?.currentToolCall || null,
+    error: chatController?.error || null,
 
     // Actions
     send,

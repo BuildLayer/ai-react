@@ -17,7 +17,7 @@ export function ChatHeader({
       <div className="flex items-center gap-x-4">
         <span className="text-lg font-semibold">Chat</span>
         <span className="text-sm text-muted-foreground">
-          {chatController.messages.length} messages
+          {chatController?.messages?.length || 0} messages
         </span>
       </div>
 

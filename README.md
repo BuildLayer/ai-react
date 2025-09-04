@@ -5,6 +5,14 @@
 [![npm version](https://img.shields.io/npm/v/@buildlayer/ai-react.svg)](https://www.npmjs.com/package/@buildlayer/ai-react)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+## Changelog
+
+### v0.1.3 (2025-10-04)
+
+- **Bug Fix**: Added null safety checks to prevent runtime errors when `chatController` is not initialized
+- **Improvement**: Enhanced error handling in `MessageList`, `ChatHeader`, `Composer`, and `useChat` hook
+- **Stability**: Fixed "can't access property 'status', e is null" runtime errors
+
 ## Installation
 
 ```bash

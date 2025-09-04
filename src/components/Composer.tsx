@@ -19,14 +19,16 @@ export function Composer({
   disabledReasons = [],
 }: ComposerProps) {
   const [input, setInput] = useState("");
-  const [status, setStatus] = useState(chatController.status);
+  const [status, setStatus] = useState(chatController?.status || "idle");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const { stop } = chatController;
+  const { stop } = chatController || {};
 
   const isStreaming = status === "streaming";
 
   // Subscribe to ChatStore status changes
   useEffect(() => {
+    if (!chatController) return;
+
     const updateStatus = () => {
       setStatus(chatController.status);
     };
@@ -37,7 +39,7 @@ export function Composer({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!input.trim() || isStreaming) return;
+    if (!input.trim() || isStreaming || !chatController) return;
 
     const message = input.trim();
     setInput("");

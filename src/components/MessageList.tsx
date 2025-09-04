@@ -11,12 +11,14 @@ export function MessageList({
   chatController,
   className = "",
 }: MessageListProps) {
-  const [messages, setMessages] = useState(chatController.messages);
-  const [status, setStatus] = useState(chatController.status);
+  const [messages, setMessages] = useState(chatController?.messages || []);
+  const [status, setStatus] = useState(chatController?.status || "idle");
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Load messages from localStorage
   useEffect(() => {
+    if (!chatController) return;
+
     const updateState = () => {
       console.log("MessageList - updating state from ChatStore");
       const allMessages = chatController.messages;

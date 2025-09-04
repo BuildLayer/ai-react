@@ -33,6 +33,23 @@ function MyApp() {
 export default MyApp;
 ```
 
+## Screenshots
+
+### Main Application
+
+![Main App](screenshots/Screenshot%202025-09-02%20at%2023-34-29%20AI%20UI%20SDK%20-%20Professional%20Demo.png)
+*Complete AI chat application with dark theme*
+
+### Light Theme
+
+![Light Theme](screenshots/Screenshot%202025-09-02%20at%2023-48-26%20AI%20UI%20SDK%20-%20Professional%20Demo.png)
+*Clean light theme interface*
+
+### Dark Theme
+
+![Dark Theme](screenshots/Screenshot%202025-09-02%20at%2023-48-58%20AI%20UI%20SDK%20-%20Professional%20Demo.png)
+*Modern dark theme interface*
+
 ### Using Individual Components
 
 ```tsx
@@ -126,6 +143,9 @@ const chatController = new ChatStore(adapter);
 
 The main application component with built-in provider configuration:
 
+![App Component](screenshots/Screenshot%202025-09-03%20at%2005-06-38%20AI%20UI%20SDK%20-%20Professional%20Demo.png)
+*Complete application with provider selection*
+
 ```tsx
 import { App } from '@buildlayer/ai-react';
 
@@ -137,6 +157,9 @@ function MyApp() {
 ### ChatPanel
 
 The main chat interface component:
+
+![ChatPanel Component](screenshots/Screenshot%202025-09-03%20at%2005-06-47%20AI%20UI%20SDK%20-%20Professional%20Demo.png)
+*Main chat interface with message history and input*
 
 ```tsx
 import { ChatPanel } from '@buildlayer/ai-react';
@@ -160,6 +183,9 @@ function MyChatApp() {
 
 Display chat messages:
 
+![MessageList Component](screenshots/Screenshot%202025-09-03%20at%2005-07-05%20AI%20UI%20SDK%20-%20Professional%20Demo.png)
+*Message display with conversation history*
+
 ```tsx
 import { MessageList } from '@buildlayer/ai-react';
 
@@ -176,6 +202,9 @@ function ChatMessages({ chatController }) {
 ### Composer
 
 Message input component:
+
+![Composer Component](screenshots/Screenshot%202025-09-03%20at%2005-07-13%20AI%20UI%20SDK%20-%20Professional%20Demo.png)
+*Message input with send button and model selection*
 
 ```tsx
 import { Composer } from '@buildlayer/ai-react';
@@ -195,6 +224,9 @@ function MessageInput({ chatController }) {
 
 Chat header with session information:
 
+![ChatHeader Component](screenshots/Screenshot%202025-09-02%20at%2023-34-29%20AI%20UI%20SDK%20-%20Professional%20Demo.png)
+*Header with session info and clear history button*
+
 ```tsx
 import { ChatHeader } from '@buildlayer/ai-react';
 
@@ -211,6 +243,9 @@ function ChatHeaderComponent({ chatController }) {
 ### ThemeSwitcher
 
 Theme toggle component:
+
+![ThemeSwitcher Component](screenshots/Screenshot%202025-09-02%20at%2023-48-26%20AI%20UI%20SDK%20-%20Professional%20Demo.png)
+*Theme toggle button for switching between light and dark modes*
 
 ```tsx
 import { ThemeSwitcher } from '@buildlayer/ai-react';
@@ -303,6 +338,14 @@ function AppComponent() {
 ```
 
 ## Theme Support
+
+### Theme Comparison
+
+![Light Theme](screenshots/Screenshot%202025-09-02%20at%2023-48-26%20AI%20UI%20SDK%20-%20Professional%20Demo.png)
+*Clean and minimal light theme*
+
+![Dark Theme](screenshots/Screenshot%202025-09-02%20at%2023-48-58%20AI%20UI%20SDK%20-%20Professional%20Demo.png)
+*Modern and sleek dark theme*
 
 ### ThemeProvider
 

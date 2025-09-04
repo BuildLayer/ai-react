@@ -7,6 +7,9 @@ export { useSessionManager } from "./hooks/useSessionManager";
 
 // Components
 export { App } from "./components/App";
+export { AppNext } from "./components/AppNext";
+export { AppRoutes } from "./components/AppRoutes";
+export { NextLayout } from "./components/NextLayout";
 export { Navigation } from "./components/Navigation";
 export { ThemeSwitcher } from "./components/ThemeSwitcher";
 export { LoadingSpinner } from "./components/LoadingSpinner";
@@ -25,6 +28,9 @@ export { AppProvider, useApp } from "./contexts/AppContext";
 
 // Types
 export type { AppProps } from "./components/App";
+export type { AppNextProps } from "./components/AppNext";
+export type { AppRoutesProps } from "./components/AppRoutes";
+export type { NextLayoutProps } from "./components/NextLayout";
 export type { NavigationProps } from "./components/Navigation";
 export type { ThemeSwitcherProps } from "./components/ThemeSwitcher";
 export type { LoadingSpinnerProps } from "./components/LoadingSpinner";

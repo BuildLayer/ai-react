@@ -40,15 +40,15 @@ export default MyApp;
 ![Main App](screenshots/Screenshot%202025-09-02%20at%2023-34-29%20AI%20UI%20SDK%20-%20Professional%20Demo.png)
 *Complete AI chat application with dark theme*
 
-### Light Theme
-
-![Light Theme](screenshots/Screenshot%202025-09-02%20at%2023-48-26%20AI%20UI%20SDK%20-%20Professional%20Demo.png)
-*Clean light theme interface*
-
 ### Dark Theme
 
-![Dark Theme](screenshots/Screenshot%202025-09-02%20at%2023-48-58%20AI%20UI%20SDK%20-%20Professional%20Demo.png)
-*Modern dark theme interface*
+![Dark Theme](screenshots/Screenshot%202025-09-02%20at%2023-34-29%20AI%20UI%20SDK%20-%20Professional%20Demo.png)
+*Clean dark theme interface*
+
+### Light Theme
+
+![Light Theme](screenshots/Screenshot%202025-09-02%20at%2023-48-58%20AI%20UI%20SDK%20-%20Professional%20Demo.png)
+*Modern light theme interface*
 
 ### Using Individual Components
 
@@ -141,10 +141,10 @@ const chatController = new ChatStore(adapter);
 
 ### App
 
-The main application component with built-in provider configuration:
+The main application component with built-in tool use:
 
 ![App Component](screenshots/Screenshot%202025-09-03%20at%2005-06-38%20AI%20UI%20SDK%20-%20Professional%20Demo.png)
-*Complete application with provider selection*
+*Complete application with tool use*
 
 ```tsx
 import { App } from '@buildlayer/ai-react';
@@ -224,7 +224,7 @@ function MessageInput({ chatController }) {
 
 Chat header with session information:
 
-![ChatHeader Component](screenshots/Screenshot%202025-09-02%20at%2023-34-29%20AI%20UI%20SDK%20-%20Professional%20Demo.png)
+![ChatHeader Component](screenshots/Screenshot%202025-09-02%20at%2023-48-26%20AI%20UI%20SDK%20-%20Professional%20Demo.png)
 *Header with session info and clear history button*
 
 ```tsx

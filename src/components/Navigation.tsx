@@ -18,10 +18,10 @@ export function Navigation({ className = "" }: NavigationProps) {
         aria-label="Main navigation"
         className={`w-full relative z-50 ${className}`}
       >
-        <div className="w-full flex items-center justify-between px-4 md:px-6 py-2">
+        <div className="w-full flex items-center justify-between px-4 lg:px-6 py-2">
           {/* Logo/Title */}
-          <div className="flex items-center gap-x-2 md:gap-x-3">
-            <h1 className="text-lg md:text-xl font-semibold">AI React</h1>
+          <div className="flex items-center gap-x-2 lg:gap-x-3">
+            <h1 className="text-lg lg:text-xl font-semibold">AI React</h1>
             {state.isConnected && (
               <span className="hidden sm:inline text-sm text-secondary">
                 • {state.selectedProvider.name}
@@ -30,7 +30,7 @@ export function Navigation({ className = "" }: NavigationProps) {
           </div>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden md:flex items-center gap-x-4">
+          <div className="hidden lg:flex items-center gap-x-4">
             {/* Connection Settings */}
             <ConnectionSettings />
             {/* Theme Switcher */}
@@ -38,14 +38,14 @@ export function Navigation({ className = "" }: NavigationProps) {
           </div>
 
           {/* Mobile Navigation Button */}
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <MobileNav showButton={true} showPanel={false} />
           </div>
         </div>
       </nav>
 
       {/* Mobile Navigation Panel - outside nav for full screen coverage */}
-      <div className="md:hidden">
+      <div className="lg:hidden">
         <MobileNav showButton={false} showPanel={true} />
       </div>
     </>

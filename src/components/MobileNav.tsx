@@ -24,7 +24,7 @@ export function MobileNav({
       {showButton && (
         <button
           onClick={toggleMenu}
-          className="md:hidden p-2"
+          className="lg:hidden p-2"
           aria-label="Toggle mobile menu"
           aria-expanded={isOpen}
         >
@@ -51,7 +51,7 @@ export function MobileNav({
       {/* Mobile menu panel - slides down from navigation */}
       {showPanel && (
         <div
-          className={`fixed top-14 left-0 right-0 bottom-0 bg-primary border-b border-primary transform transition-transform duration-300 ease-in-out md:hidden z-40 ${
+          className={`fixed top-14 left-0 right-0 bottom-0 bg-primary border-b border-primary transform transition-transform duration-300 ease-in-out lg:hidden z-40 ${
             isOpen ? "translate-y-0" : "-translate-y-full"
           } ${className}`}
         >

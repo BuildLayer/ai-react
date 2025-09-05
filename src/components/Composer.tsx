@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import type { ChatController } from "@buildlayer/ai-core";
+import { useTheme } from "./ThemeProvider";
 
 export interface ComposerProps {
   chatController: ChatController;
@@ -22,6 +23,7 @@ export function Composer({
   const [status, setStatus] = useState(chatController?.status || "idle");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { stop } = chatController || {};
+  const { theme } = useTheme();
 
   const isStreaming = status === "streaming";
 
@@ -129,7 +131,7 @@ export function Composer({
           <button
             type="submit"
             disabled={!input.trim() || isStreaming || disabled}
-            className="px-3 py-1 text-xs text-white focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-3 py-1 text-xs focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
             style={{
               backgroundColor:
                 !input.trim() || isStreaming || disabled
@@ -140,6 +142,7 @@ export function Composer({
                 !input.trim() || isStreaming || disabled
                   ? "#4d4d4d"
                   : "#00b894",
+              color: theme === "dark" ? "#ffffff" : "#000000",
             }}
             onMouseEnter={(e) => {
               if (!(!input.trim() || isStreaming || disabled)) {

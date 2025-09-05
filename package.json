@@ -82,7 +82,7 @@
     "react-router-dom": "^6.0.0"
   },
   "dependencies": {
-    "@buildlayer/ai-cli": "^0.1.6",
+    "@buildlayer/ai-cli": "^0.1.7",
     "@buildlayer/ai-core": "^0.1.4",
     "@tailwindcss/postcss": "^4.1.12",
     "clsx": "^2.0.0",

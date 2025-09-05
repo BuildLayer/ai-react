@@ -5,6 +5,34 @@
 [![npm version](https://img.shields.io/npm/v/@buildlayer/ai-react.svg)](https://www.npmjs.com/package/@buildlayer/ai-react)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+## Contents
+
+- [Quick Setup with AI CLI](#quick-setup-with-ai-cli)
+- [Manual Installation](#manual-installation)
+- [Framework Support](#framework-support)
+  - [React (Client-Side)](#react-client-side)
+  - [Next.js (Server-Side Rendering)](#nextjs-server-side-rendering)
+  - [Adding to Existing React Apps](#adding-to-existing-react-apps)
+- [Prerequisites](#prerequisites)
+- [Fully Responsive](#fully-responsive)
+- [Quick Start](#quick-start)
+- [Screenshots](#screenshots)
+- [Using Individual Components](#using-individual-components)
+- [Provider Configuration](#provider-configuration)
+- [Core Components](#core-components)
+- [Hooks](#hooks)
+- [Theme Support](#theme-support)
+- [Styling](#styling)
+- [TypeScript Support](#typescript-support)
+- [API Reference](#api-reference)
+- [Examples](#examples)
+- [Bug Reports & Feature Requests](#bug-reports--feature-requests)
+- [What's Included (OSS)](#whats-included-oss)
+- [What's Pro-Only](#whats-pro-only)
+- [Framework-Specific Packages](#framework-specific-packages)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
+
 ## Quick Setup with AI CLI
 
 The easiest way to get started is using our CLI tool:
@@ -45,7 +73,7 @@ yarn add @buildlayer/ai-react
 
 ## Framework Support
 
-### ✅ React (Client-Side)
+### React (Client-Side)
 
 This package is designed for **React applications** and works perfectly with:
 
@@ -54,7 +82,7 @@ This package is designed for **React applications** and works perfectly with:
 - React Router
 - Any client-side React setup
 
-### ❌ Next.js (Server-Side Rendering)
+### Next.js (Server-Side Rendering)
 
 **Not supported** for Next.js due to server-side rendering conflicts. For Next.js support, use the dedicated `@buildlayer/ai-nextjs` (coming soon) package instead.
 

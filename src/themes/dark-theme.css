@@ -405,7 +405,7 @@
   }
 
   .loading-dot {
-    background-color: var(--color-white-400);
+    background-color: var(--color-ai-600);
   }
 
   /* Mobile-specific styles */

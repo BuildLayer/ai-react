@@ -23,7 +23,7 @@ export function Navigation({ className = "" }: NavigationProps) {
           <div className="flex items-center gap-x-2 lg:gap-x-3">
             <h1 className="text-lg lg:text-xl font-semibold">AI React</h1>
             {state.isConnected && (
-              <span className="hidden sm:inline text-sm text-secondary">
+              <span className="text-sm text-secondary">
                 • {state.selectedProvider.name}
               </span>
             )}

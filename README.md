@@ -1,6 +1,6 @@
 # @buildlayer/ai-react
 
-> Minimal React UI components for AI chat assistants with light/dark themes and full TypeScript support
+> Fully responsive React UI components for AI chat assistants with light/dark themes, mobile navigation, and full TypeScript support
 
 [![npm version](https://img.shields.io/npm/v/@buildlayer/ai-react.svg)](https://www.npmjs.com/package/@buildlayer/ai-react)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -88,7 +88,11 @@ Before installing, make sure you have:
 - **React Router DOM 6+** (for the main `App` component)
 - **Node.js 18+**
 
-> **💡 Pro Tip**: Use `npx @buildlayer/ai-cli create react my-app` to automatically set up all dependencies and configuration!
+> **Pro Tip**: Use `npx @buildlayer/ai-cli create react my-app` to automatically set up all dependencies and configuration!
+
+## Fully Responsive
+
+The AI React components are fully responsive with mobile navigation, tablet support, and desktop optimization.
 
 ## Quick Start
 
@@ -119,6 +123,23 @@ export default MyApp;
 
 ![Light Theme](screenshots/Screenshot%202025-09-02%20at%2023-48-58%20AI%20UI%20SDK%20-%20Professional%20Demo.png)
 *Modern light theme interface*
+
+### Mobile Responsive Design
+
+<!-- markdownlint-disable-next-line MD033 -->
+<div align="center">
+
+| Mobile Dark Theme | Mobile Light Theme |
+|:---:|:---:|
+| ![Mobile Dark Theme](screenshots/mobile-dark-theme.png) | ![Mobile Light Theme](screenshots/mobile-light-theme.png) |
+| *Dark theme with hamburger navigation* | *Light theme with responsive layout* |
+
+| Mobile Navigation Dark | Mobile Navigation Light |
+|:---:|:---:|
+| ![Mobile Navigation Dark](screenshots/mobile-navigation-dark.png) | ![Mobile Navigation Light](screenshots/mobile-navigation-light.png) |
+| *Mobile navigation panel with dark theme* | *Mobile navigation panel with light theme* |
+
+</div>
 
 ### Using Individual Components
 

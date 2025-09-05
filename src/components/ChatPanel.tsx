@@ -63,7 +63,7 @@ export function ChatPanel({
         <MessageList chatController={chatController} />
       </div>
 
-      <div className="p-4">
+      <div className="p-3 md:p-4">
         <Composer
           chatController={chatController}
           model={model}

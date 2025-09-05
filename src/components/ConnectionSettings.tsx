@@ -85,7 +85,7 @@ export function ConnectionSettings({
   return (
     <div className={className}>
       {/* Connection Status */}
-      <div className="flex items-center gap-x-2">
+      <div className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-x-2">
         {state.isConnected ? (
           <>
             <div className="flex items-center gap-x-2">
@@ -105,9 +105,13 @@ export function ConnectionSettings({
             </button>
           </>
         ) : (
-          <div className="flex items-center gap-x-2">
-            <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-            <span className="text-sm text-muted-foreground">Not connected</span>
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-x-2">
+            <div className="flex items-center gap-x-2">
+              <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+              <span className="text-sm text-muted-foreground">
+                Not connected
+              </span>
+            </div>
             <button
               onClick={() => setIsOpen(true)}
               className="px-2 py-1 text-xs bg-primary text-primary-foreground rounded hover:bg-primary/90 transition-colors"

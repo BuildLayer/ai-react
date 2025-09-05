@@ -1,5 +1,6 @@
 export { App } from "./App";
 export { Navigation } from "./Navigation";
+export { MobileNav } from "./MobileNav";
 export { ThemeSwitcher } from "./ThemeSwitcher";
 export { LoadingSpinner } from "./LoadingSpinner";
 export { ChatPanel } from "./ChatPanel";

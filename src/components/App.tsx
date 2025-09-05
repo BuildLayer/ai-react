@@ -5,6 +5,7 @@ import { ChatPanel } from "./ChatPanel";
 import { Navigation } from "./Navigation";
 import { LoadingSpinner } from "./LoadingSpinner";
 import { AppProvider, useApp } from "../contexts/AppContext";
+import { MobileNavProvider } from "../contexts/MobileNavContext";
 
 export interface AppProps {
   className?: string;
@@ -37,7 +38,7 @@ function AppRoutes() {
   }
 
   return (
-    <div className="h-screen flex flex-col overflow-hidden">
+    <div className="h-screen flex flex-col overflow-hidden relative">
       <Navigation />
       <main
         role="main"
@@ -82,9 +83,11 @@ export function App({ className = "" }: AppProps) {
     <div className={className}>
       <ThemeProvider defaultTheme="dark">
         <AppProvider>
-          <Router>
-            <AppRoutes />
-          </Router>
+          <MobileNavProvider>
+            <Router>
+              <AppRoutes />
+            </Router>
+          </MobileNavProvider>
         </AppProvider>
       </ThemeProvider>
     </div>

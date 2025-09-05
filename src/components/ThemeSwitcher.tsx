@@ -49,7 +49,7 @@ export function ThemeSwitcher({
       data-testid="theme-button"
       onClick={toggleTheme}
       disabled={isLoading}
-      className={`w-26 flex items-center justify-center sm:justify-start sm:w-auto space-x-2 px-3 py-2 text-sm transition-colors hover:bg-opacity-10 hover:bg-current disabled:opacity-50 ${className}`}
+      className={`w-full sm:w-auto flex items-center justify-center sm:justify-start space-x-2 px-3 py-2 text-sm transition-colors hover:bg-opacity-10 hover:bg-current disabled:opacity-50 ${className}`}
       title={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
       aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
     >

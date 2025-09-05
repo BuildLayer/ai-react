@@ -88,24 +88,26 @@ export function ConnectionSettings({
       <div className="flex flex-col lg:flex-row items-start lg:items-center gap-2 lg:gap-x-2">
         {state.isConnected ? (
           <>
-            <div className="flex items-center gap-x-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-              <span className="text-sm text-muted-foreground">
-                Connected to {state.selectedProvider.name}
-              </span>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-x-2">
+              <div className="flex items-center gap-x-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span className="text-sm text-muted-foreground">
+                  Connected to {state.selectedProvider.name}
+                </span>
+              </div>
               <span className="text-xs text-muted-foreground">
                 ({state.selectedModel})
               </span>
             </div>
             <button
               onClick={handleDisconnect}
-              className="px-2 py-1 text-xs text-muted-foreground hover:text-foreground transition-colors"
+              className="w-full sm:w-auto px-2 py-1 text-xs text-muted-foreground hover:text-foreground transition-colors"
             >
               Disconnect
             </button>
           </>
         ) : (
-          <div className="flex flex-col lg:flex-row items-start lg:items-center gap-2 lg:gap-x-2">
+          <div className="w-full sm:w-auto flex flex-col lg:flex-row items-start lg:items-center gap-2 lg:gap-x-2">
             <div className="flex items-center gap-x-2">
               <div className="w-2 h-2 bg-red-500 rounded-full"></div>
               <span className="text-sm text-muted-foreground">
@@ -114,7 +116,7 @@ export function ConnectionSettings({
             </div>
             <button
               onClick={() => setIsOpen(true)}
-              className="px-2 py-1 text-xs bg-primary text-primary-foreground rounded hover:bg-primary/90 transition-colors"
+              className="w-full sm:w-auto px-2 py-1 text-xs bg-primary text-primary-foreground rounded hover:bg-primary/90 transition-colors"
             >
               Connect
             </button>

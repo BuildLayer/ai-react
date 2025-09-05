@@ -56,7 +56,7 @@ export function MobileNav({
           } ${className}`}
         >
           <div className="h-full overflow-y-auto">
-            <div className="p-4 space-y-6">
+            <div className="p-8 space-y-6">
               {/* Connection Settings */}
               <div className="space-y-3">
                 <h3 className="text-sm font-medium text-secondary uppercase tracking-wide">
@@ -72,21 +72,6 @@ export function MobileNav({
                 </h3>
                 <ThemeSwitcher />
               </div>
-
-              {/* Disconnect button if connected */}
-              {/* {state.isConnected && (
-                <div className="pt-4 border-t border-primary">
-                  <button
-                    onClick={() => {
-                      disconnect();
-                      closeMenu();
-                    }}
-                    className="w-full px-4 py-2 text-sm text-error hover:bg-error hover:text-white transition-colors rounded-md border border-error"
-                  >
-                    Disconnect
-                  </button>
-                </div>
-              )} */}
             </div>
           </div>
         </div>

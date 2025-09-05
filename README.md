@@ -5,20 +5,90 @@
 [![npm version](https://img.shields.io/npm/v/@buildlayer/ai-react.svg)](https://www.npmjs.com/package/@buildlayer/ai-react)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Installation
+## Quick Setup with AI CLI
+
+The easiest way to get started is using our CLI tool:
+
+```bash
+# Create a new React AI chat app
+npx @buildlayer/ai-cli create react my-ai-chat-app
+
+# Or create a basic app
+npx @buildlayer/ai-cli create basic my-ai-chat-app
+
+# Navigate to your new project
+cd my-ai-chat-app
+
+# Install dependencies and start
+npm install
+npm start
+```
+
+This will create a complete React application with `@buildlayer/ai-react` pre-configured and ready to use!
+
+## Manual Installation
+
+If you prefer to add to an existing project:
 
 ```bash
 # npm
-npm install @buildlayer/ai-react @buildlayer/ai-core
+npm install @buildlayer/ai-react
 
 # pnpm
-pnpm add @buildlayer/ai-react @buildlayer/ai-core
+pnpm add @buildlayer/ai-react
 
 # yarn
-yarn add @buildlayer/ai-react @buildlayer/ai-core
+yarn add @buildlayer/ai-react
 ```
 
-> **Note**: You also need to install `@buildlayer/ai-core` which provides the AI chat engine and provider adapters.
+> **Note**: `@buildlayer/ai-core` is automatically included as a dependency and provides the AI chat engine and provider adapters.
+
+## Framework Support
+
+### ✅ React (Client-Side)
+
+This package is designed for **React applications** and works perfectly with:
+
+- Create React App
+- Vite React
+- React Router
+- Any client-side React setup
+
+### ❌ Next.js (Server-Side Rendering)
+
+**Not supported** for Next.js due to server-side rendering conflicts. For Next.js support, use the dedicated `@buildlayer/ai-nextjs` (coming soon) package instead.
+
+### Adding to Existing React Apps
+
+You can easily integrate this package into existing React applications on specific routes:
+
+```tsx
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { App as AIApp } from '@buildlayer/ai-react';
+
+function MyExistingApp() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
+        {/* Add AI chat on a specific route */}
+        <Route path="/ai-chat" element={<AIApp />} />
+      </Routes>
+    </Router>
+  );
+}
+```
+
+## Prerequisites
+
+Before installing, make sure you have:
+
+- **React 18+** and **React DOM 18+**
+- **React Router DOM 6+** (for the main `App` component)
+- **Node.js 18+**
+
+> **💡 Pro Tip**: Use `npx @buildlayer/ai-cli create react my-app` to automatically set up all dependencies and configuration!
 
 ## Quick Start
 
@@ -141,10 +211,10 @@ const chatController = new ChatStore(adapter);
 
 ### App
 
-The main application component with built-in tool use:
+The main application component:
 
 ![App Component](screenshots/Screenshot%202025-09-03%20at%2005-06-38%20AI%20UI%20SDK%20-%20Professional%20Demo.png)
-*Complete application with tool use*
+*Complete application with basic chat functionality*
 
 ```tsx
 import { App } from '@buildlayer/ai-react';
@@ -153,6 +223,8 @@ function MyApp() {
   return <App />;
 }
 ```
+
+> **Note**: The `App` component requires `react-router-dom` as a peer dependency and includes routing, state management, and a welcome screen when not connected to an AI provider.
 
 ### ChatPanel
 
@@ -296,7 +368,7 @@ function ChatComponent() {
 
 ### useChatWithSingleSession
 
-Single session management with persistence:
+Single session management with persistence (OSS version):
 
 ```tsx
 import { useChatWithSingleSession } from '@buildlayer/ai-react';
@@ -316,6 +388,8 @@ function ChatWithPersistence() {
   );
 }
 ```
+
+> **Note**: This is the OSS version with single session support. For multi-session management, use `@buildlayer/ai-react-pro` with `useSessionManager`.
 
 ### useApp
 
@@ -341,11 +415,11 @@ function AppComponent() {
 
 ### Theme Comparison
 
-![Light Theme](screenshots/Screenshot%202025-09-02%20at%2023-48-26%20AI%20UI%20SDK%20-%20Professional%20Demo.png)
-*Clean and minimal light theme*
+![Dark Theme](screenshots/Screenshot%202025-09-02%20at%2023-48-26%20AI%20UI%20SDK%20-%20Professional%20Demo.png)
+*Clean and minimal dark theme*
 
-![Dark Theme](screenshots/Screenshot%202025-09-02%20at%2023-48-58%20AI%20UI%20SDK%20-%20Professional%20Demo.png)
-*Modern and sleek dark theme*
+![Light Theme](screenshots/Screenshot%202025-09-02%20at%2023-48-58%20AI%20UI%20SDK%20-%20Professional%20Demo.png)
+*Modern and sleek light theme*
 
 ### ThemeProvider
 
@@ -447,6 +521,8 @@ import type {
   ChatHeaderProps,
   ThemeSwitcherProps,
   AppProps,
+  AppRoutesProps,
+  NavigationProps,
   Theme,
   ThemeConfig,
   ThemeContextType,
@@ -454,7 +530,7 @@ import type {
   AppState,
   AppContextType,
   AppProviderProps,
-  ChatSession
+  SingleChatSession
 } from '@buildlayer/ai-react';
 
 interface MyChatProps extends ChatPanelProps {
@@ -525,10 +601,8 @@ function useChat(chatController: ChatController): {
   sessionId: string;
   messages: Message[];
   status: ChatStatus;
-  currentToolCall: ToolCall | null;
   error: string | null;
   send: (input: string | ContentPart[], opts?: SendOpts) => Promise<void>;
-  runTool: (call: { name: string; args: any; id: string }) => Promise<void>;
   stop: () => void;
   reset: () => void;
   importHistory: (msgs: Message[]) => void;
@@ -567,9 +641,12 @@ function useThemeAwareStyle(): {
 ```tsx
 function useApp(): {
   state: AppState;
-  connect: (provider: string, model: string, apiKey?: string) => Promise<void>;
+  connect: (config: ProviderConfig) => Promise<void>;
+  connectLegacy: (provider: string, model: string, apiKey?: string) => Promise<void>;
   disconnect: () => void;
   clearError: () => void;
+  loadAvailableProviders: () => Promise<void>;
+  loadAvailableModels: (provider: string) => Promise<void>;
 };
 ```
 
@@ -648,34 +725,21 @@ function Header() {
 }
 ```
 
-## Contributing
+## Bug Reports & Feature Requests
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+Found a bug or have a feature request? We'd love to hear from you!
 
-### Development Setup
-
-```bash
-git clone https://github.com/BuildLayer/ai-react.git
-cd ai-react
-
-# npm
-npm install
-npm run dev
-
-# pnpm
-pnpm install
-pnpm dev
-
-# yarn
-yarn install
-yarn dev
-```
+- **🐛 Bug Reports**: [Open an issue](https://github.com/BuildLayer/ai-react/issues/new?template=bug_report.md)
+- **💡 Feature Requests**: [Open an issue](https://github.com/BuildLayer/ai-react/issues/new?template=feature_request.md)
+- **💬 General Discussion**: [GitHub Discussions](https://github.com/BuildLayer/ai-react/discussions)
 
 ### What's Included (OSS)
 
 This package includes basic chat UI components:
 
 - ✅ `App` - Complete application component
+- ✅ `AppRoutes` - Routing component
+- ✅ `Navigation` - Navigation component
 - ✅ `ChatPanel` - Main chat interface
 - ✅ `MessageList` - Message display
 - ✅ `Composer` - Message input
@@ -683,7 +747,7 @@ This package includes basic chat UI components:
 - ✅ `ThemeSwitcher` - Theme toggle component
 - ✅ `LoadingSpinner` - Loading indicator
 - ✅ `useChat` - Basic chat hook
-- ✅ `useChatWithSingleSession` - Single session with persistence
+- ✅ `useChatWithSingleSession` - Single session with persistence (OSS)
 - ✅ `useApp` - Application state management
 - ✅ `ThemeProvider` - Light/dark themes
 - ✅ `useTheme` - Theme management
@@ -696,10 +760,21 @@ Advanced features are available in `@buildlayer/ai-react-pro` (coming soon):
 
 - 🔒 Tool calling forms and UI
 - 🔒 Advanced themes (nebula, plasma, synthwave)
-- 🔒 Multi-session management
+- 🔒 Multi-session management (`useSessionManager`) - manage multiple chat sessions
 - 🔒 Advanced UX components
 - 🔒 Export/import functionality
 - 🔒 Advanced persistence adapters
+- 🔒 `runTool` functionality in `useChat`
+- 🔒 `currentToolCall` in chat state
+
+> **Note**: Pro-only features will be available in the separate `@buildlayer/ai-react-pro` package.
+
+### Framework-Specific Packages
+
+- **React (Client-Side)**: `@buildlayer/ai-react` ← You are here
+- **Next.js (SSR)**: `@buildlayer/ai-nextjs` (coming soon)
+- **Vue.js**: `@buildlayer/ai-vue` (coming soon)
+- **Svelte**: `@buildlayer/ai-svelte` (coming soon)
 
 ## License
 
@@ -711,7 +786,10 @@ MIT License - see [LICENSE](LICENSE) file for details.
 - [Tailwind CSS](https://tailwindcss.com/) - CSS framework
 - [TypeScript](https://www.typescriptlang.org/) - Type safety
 - [@buildlayer/ai-core](https://www.npmjs.com/package/@buildlayer/ai-core) - AI chat engine
+- [@buildlayer/ai-cli](https://www.npmjs.com/package/@buildlayer/ai-cli) - CLI tool for project setup
 
 ## Made with ❤️ by the BuildLayer.dev team
 
 For advanced features like tool calling, session persistence, and premium themes, check out [@buildlayer/ai-react-pro](https://www.npmjs.com/package/@buildlayer/ai-react-pro) (coming soon).
+
+For Next.js support, use [@buildlayer/ai-nextjs](https://www.npmjs.com/package/@buildlayer/ai-nextjs) (coming soon).

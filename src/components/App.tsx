@@ -48,11 +48,27 @@ function AppRoutes() {
           <Route
             path="/"
             element={
-              <ChatPanel
-                chatController={state.chatController!}
-                model={state.selectedModel}
-                className="h-full"
-              />
+              state.isConnected && state.chatController ? (
+                <ChatPanel
+                  chatController={state.chatController}
+                  model={state.selectedModel}
+                  className="h-full"
+                />
+              ) : (
+                <div className="flex items-center justify-center h-full">
+                  <div className="text-center">
+                    <h2 className="text-xl font-semibold mb-2">
+                      Welcome to AI Chat
+                    </h2>
+                    <p className="text-muted-foreground mb-4">
+                      Please connect to an AI provider to start chatting
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      Use the connection settings in the navigation bar above
+                    </p>
+                  </div>
+                </div>
+              )
             }
           />
         </Routes>

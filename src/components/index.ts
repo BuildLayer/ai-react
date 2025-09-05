@@ -6,4 +6,5 @@ export { ChatPanel } from "./ChatPanel";
 export { ChatHeader } from "./ChatHeader";
 export { MessageList } from "./MessageList";
 export { Composer } from "./Composer";
+export { ConnectionSettings } from "./ConnectionSettings";
 export { ThemeProvider, useTheme, useThemeAwareStyle } from "./ThemeProvider";

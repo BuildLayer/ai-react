@@ -355,4 +355,54 @@
   .border-accent {
     border-color: var(--color-ai-500) !important;
   }
+
+  /* Modal Styles */
+  .modal-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-content {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-white-300);
+    color: var(--color-black-900);
+  }
+
+  .modal-input {
+    background-color: var(--color-white-100);
+    border: 1px solid var(--color-white-400);
+    color: var(--color-black-900);
+  }
+
+  .modal-input:focus {
+    border-color: var(--color-ai-500);
+    outline: none;
+  }
+
+  .modal-button-primary {
+    background-color: var(--color-ai-500);
+    color: var(--color-white);
+  }
+
+  .modal-button-primary:hover {
+    background-color: var(--color-ai-600);
+  }
+
+  .modal-button-secondary {
+    background-color: transparent;
+    border: 1px solid var(--color-white-400);
+    color: var(--color-black-900);
+  }
+
+  .modal-button-secondary:hover {
+    background-color: var(--color-white-100);
+  }
+
+  /* Loading Dots */
+  .loading-dots {
+    color: var(--color-black-900);
+  }
+
+  .loading-dot {
+    background-color: var(--color-black-400);
+  }
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import { useApp } from "../contexts/AppContext";
 import { ThemeSwitcher } from "./ThemeSwitcher";
+import { ConnectionSettings } from "./ConnectionSettings";
 
 export interface NavigationProps {
   className?: string;
@@ -28,6 +29,8 @@ export function Navigation({ className = "" }: NavigationProps) {
 
         {/* Navigation Links */}
         <div className="flex items-center gap-x-4">
+          {/* Connection Settings */}
+          <ConnectionSettings />
           {/* Theme Switcher */}
           <ThemeSwitcher />
         </div>

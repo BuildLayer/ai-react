@@ -1,6 +1,6 @@
 {
   "name": "@buildlayer/ai-react",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "React UI components for AI chat assistants",
   "keywords": [
     "react",
@@ -68,7 +68,8 @@
   ],
   "scripts": {
     "build": "vite build",
-    "dev": "vite build --watch",
+    "dev": "vite dev",
+    "preview": "vite preview",
     "clean": "rm -rf dist",
     "type-check": "tsc --noEmit",
     "test": "vitest",
@@ -82,7 +83,7 @@
   },
   "dependencies": {
     "@buildlayer/ai-cli": "^0.1.6",
-    "@buildlayer/ai-core": "^0.1.3",
+    "@buildlayer/ai-core": "^0.1.4",
     "@tailwindcss/postcss": "^4.1.12",
     "clsx": "^2.0.0",
     "postcss": "^8.0.0",

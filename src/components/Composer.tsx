@@ -90,7 +90,7 @@ export function Composer({
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
           disabled={disabled || isStreaming}
-          className="w-full resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50"
+          className="w-full resize-none focus:outline-none disabled:opacity-50"
           rows={1}
           maxLength={4000}
           style={{

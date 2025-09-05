@@ -729,9 +729,9 @@ function Header() {
 
 Found a bug or have a feature request? We'd love to hear from you!
 
-- **🐛 Bug Reports**: [Open an issue](https://github.com/BuildLayer/ai-react/issues/new?template=bug_report.md)
-- **💡 Feature Requests**: [Open an issue](https://github.com/BuildLayer/ai-react/issues/new?template=feature_request.md)
-- **💬 General Discussion**: [GitHub Discussions](https://github.com/BuildLayer/ai-react/discussions)
+- **Bug Reports**: [Open an issue](https://github.com/BuildLayer/ai-react/issues/new?template=bug_report.md)
+- **Feature Requests**: [Open an issue](https://github.com/BuildLayer/ai-react/issues/new?template=feature_request.md)
+- **General Discussion**: [GitHub Discussions](https://github.com/BuildLayer/ai-react/discussions)
 
 ### What's Included (OSS)
 

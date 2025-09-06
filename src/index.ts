@@ -22,6 +22,7 @@ export {
 
 // Contexts
 export { AppProvider, useApp } from "./contexts/AppContext";
+export { MobileNavProvider } from "./contexts/MobileNavContext";
 
 // Types
 export type { AppProps } from "./components/App";

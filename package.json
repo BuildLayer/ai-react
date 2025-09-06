@@ -1,6 +1,6 @@
 {
   "name": "@buildlayer/ai-react",
-  "version": "0.1.18",
+  "version": "0.2.0",
   "description": "React UI components for AI chat assistants",
   "keywords": [
     "react",
@@ -59,7 +59,7 @@
     "type": "git",
     "url": "https://github.com/BuildLayer/ai-react"
   },
-  "homepage": "https://buildlayer.dev/ai-ui",
+  "homepage": "https://buildlayer.dev/projects/ai-ui",
   "bugs": {
     "url": "https://github.com/BuildLayer/ai-react/issues"
   },
@@ -82,7 +82,7 @@
     "react-router-dom": "^6.0.0"
   },
   "dependencies": {
-    "@buildlayer/ai-core": "^0.1.4",
+    "@buildlayer/ai-core": "^0.2.0",
     "@tailwindcss/postcss": "^4.1.12",
     "clsx": "^2.0.0",
     "postcss": "^8.0.0",

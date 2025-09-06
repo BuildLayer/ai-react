@@ -54,12 +54,6 @@ export function ConnectionSettings({
     }
   }, [config.provider, config.apiKey]);
 
-  useEffect(() => {
-    if (config.provider && config.provider !== "local" && config.apiKey) {
-      loadAvailableModels(config.provider);
-    }
-  }, [config.provider, config.apiKey]);
-
   const handleProviderChange = (provider: string) => {
     setConfig((prev) => ({
       ...prev,
@@ -170,19 +164,14 @@ export function ConnectionSettings({
                   {state.availableProviders
                     .filter((p) => p !== "local")
                     .map((provider) => (
-                      <option
-                        key={provider}
-                        value={provider}
-                        disabled={!config.apiKey}
-                      >
-                        {providerNames[provider] || provider}{" "}
-                        {!config.apiKey ? "(API key required)" : ""}
+                      <option key={provider} value={provider}>
+                        {providerNames[provider] || provider}
                       </option>
                     ))}
                 </select>
                 {!config.apiKey && config.provider !== "local" && (
                   <p className="text-xs text-muted-foreground mt-1">
-                    Enter API key to select other providers
+                    Enter API key to load models
                   </p>
                 )}
               </div>

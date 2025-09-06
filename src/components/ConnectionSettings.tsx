@@ -133,23 +133,6 @@ export function ConnectionSettings({
             </h3>
 
             <div className="space-y-4">
-              {config.provider !== "local" && (
-                <div>
-                  <label className="block text-sm font-medium mb-2">
-                    API Key
-                  </label>
-                  <input
-                    type="password"
-                    value={config.apiKey}
-                    onChange={(e) =>
-                      setConfig((prev) => ({ ...prev, apiKey: e.target.value }))
-                    }
-                    placeholder="Enter your API key"
-                    className="w-full p-2 modal-input"
-                  />
-                </div>
-              )}
-
               {/* Provider Selection */}
               <div>
                 <label className="block text-sm font-medium mb-2">
@@ -175,6 +158,23 @@ export function ConnectionSettings({
                   </p>
                 )}
               </div>
+
+              {config.provider !== "local" && (
+                <div>
+                  <label className="block text-sm font-medium mb-2">
+                    API Key
+                  </label>
+                  <input
+                    type="password"
+                    value={config.apiKey}
+                    onChange={(e) =>
+                      setConfig((prev) => ({ ...prev, apiKey: e.target.value }))
+                    }
+                    placeholder="Enter your API key"
+                    className="w-full p-2 modal-input"
+                  />
+                </div>
+              )}
 
               {/* Model Selection */}
               <div>

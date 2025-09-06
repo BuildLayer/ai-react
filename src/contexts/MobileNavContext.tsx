@@ -1,12 +1,12 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
-interface MobileNavContextType {
+export interface MobileNavContextType {
   isOpen: boolean;
   toggleMenu: () => void;
   closeMenu: () => void;
 }
 
-const MobileNavContext = createContext<MobileNavContextType | undefined>(
+export const MobileNavContext = createContext<MobileNavContextType | undefined>(
   undefined
 );
 

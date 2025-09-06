@@ -3,6 +3,7 @@
 > Fully responsive React UI components for AI chat assistants with light/dark themes, mobile navigation, and full TypeScript support
 
 [![npm version](https://img.shields.io/npm/v/@buildlayer/ai-react.svg)](https://www.npmjs.com/package/@buildlayer/ai-react)
+![npm](https://img.shields.io/npm/dw/@buildlayer/ai-react)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Contents

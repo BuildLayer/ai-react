@@ -249,6 +249,7 @@ import { createLocalLLMAdapter, ChatStore } from '@buildlayer/ai-core';
 
 const adapter = createLocalLLMAdapter({
   baseURL: "http://localhost:11434/v1", // Ollama default
+  model: "",
   apiKey: "ollama", // Optional
 });
 const chatController = new ChatStore(adapter);

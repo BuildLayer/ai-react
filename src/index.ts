@@ -3,6 +3,11 @@ import './index.css';
 // Core exports
 export * from './core';
 
+// New hooks
+export { useConnection } from './hooks/useConnection';
+export { useSessions } from './hooks/useSessions';
+export { useStorage } from './hooks/useStorage';
+
 // Legacy hooks (to be deprecated)
 export { useChat } from './hooks/useChat';
 export { useChatWithSingleSession } from './hooks/useChatWithSingleSession';

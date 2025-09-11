@@ -11,3 +11,6 @@
 .cache
 .idea
 .git
+
+# docs
+docs/

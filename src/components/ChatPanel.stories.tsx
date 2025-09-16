@@ -1,55 +1,52 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { ChatPanel } from "./ChatPanel.js";
-import { ChatStore } from "@buildlayer/ai-core";
+import type { Meta, StoryObj } from '@storybook/react';
+import { ChatPanel } from './ChatPanel.js';
+import { ChatStore } from '../core/mocks/ai-core';
 
 // Mock chat controller for stories
 const mockChatController = {
-  sessionId: "story-session",
+  sessionId: 'story-session',
   messages: [
     {
-      id: "1",
-      role: "user" as const,
-      content: [{ type: "text" as const, text: "Hello, how are you?" }],
+      id: '1',
+      role: 'user' as const,
+      content: [{ type: 'text' as const, text: 'Hello, how are you?' }],
       createdAt: Date.now() - 60000,
     },
     {
-      id: "2",
-      role: "assistant" as const,
+      id: '2',
+      role: 'assistant' as const,
       content: [
         {
-          type: "text" as const,
+          type: 'text' as const,
           text: "I'm doing well, thank you for asking! How can I help you today?",
         },
       ],
       createdAt: Date.now() - 30000,
     },
   ],
-  status: "idle" as const,
-  currentToolCall: undefined,
-  error: undefined,
+  status: 'idle' as const,
+  error: null,
   send: async () => {},
+  sendMessage: async () => {},
   runTool: async () => {},
   stop: () => {},
   reset: () => {},
   importHistory: () => {},
   exportHistory: () => [],
   clearHistory: () => {},
+  clearMessages: () => {},
+  registerTool: () => {},
   subscribe: () => () => {},
 };
 
 const meta: Meta<typeof ChatPanel> = {
-  title: "Components/ChatPanel",
+  title: 'Components/ChatPanel',
   component: ChatPanel,
   parameters: {
-    layout: "fullscreen",
+    layout: 'fullscreen',
   },
-  tags: ["autodocs"],
-  argTypes: {
-    showToolDrawer: {
-      control: "boolean",
-      description: "Whether to show the tool drawer",
-    },
-  },
+  tags: ['autodocs'],
+  argTypes: {},
 };
 
 export default meta;
@@ -58,29 +55,12 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     chatController: mockChatController,
-    showToolDrawer: true,
   },
 };
 
 export const WithoutToolDrawer: Story = {
   args: {
     chatController: mockChatController,
-    showToolDrawer: false,
-  },
-};
-
-export const WithToolCall: Story = {
-  args: {
-    chatController: {
-      ...mockChatController,
-      status: "tool-calling" as const,
-      currentToolCall: {
-        id: "tool-1",
-        name: "weather_lookup",
-        args: { location: "New York" },
-      },
-    },
-    showToolDrawer: true,
   },
 };
 
@@ -88,8 +68,7 @@ export const Streaming: Story = {
   args: {
     chatController: {
       ...mockChatController,
-      status: "streaming" as const,
+      status: 'loading' as const,
     },
-    showToolDrawer: true,
   },
 };

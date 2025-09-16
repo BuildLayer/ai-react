@@ -1,0 +1,48 @@
+ai-reactai<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI React SDK Test</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/zustand@5.0.8/dist/index.js"></script>
+    <script src="https://unpkg.com/immer@10.1.3/dist/index.js"></script>
+    <script src="https://unpkg.com/@buildlayer/ai-core@0.2.2/dist/index.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="module">
+        // Test the built SDK
+        import { useConnection, useSessions, useStorage } from './dist/index.js';
+        
+        console.log('AI React SDK loaded successfully!');
+        console.log('Available hooks:', { useConnection, useSessions, useStorage });
+        
+        // Test basic functionality
+        const { React, ReactDOM } = window;
+        
+        function TestApp() {
+            const [status, setStatus] = React.useState('Loading...');
+            
+            React.useEffect(() => {
+                setStatus('SDK loaded successfully!');
+            }, []);
+            
+            return React.createElement('div', {
+                style: {
+                    padding: '20px',
+                    fontFamily: 'Arial, sans-serif',
+                    textAlign: 'center'
+                }
+            }, [
+                React.createElement('h1', { key: 'title' }, 'AI React SDK Test'),
+                React.createElement('p', { key: 'status' }, status),
+                React.createElement('p', { key: 'info' }, 'Check console for hook availability')
+            ]);
+        }
+        
+        ReactDOM.render(React.createElement(TestApp), document.getElementById('root'));
+    </script>
+</body>
+</html>

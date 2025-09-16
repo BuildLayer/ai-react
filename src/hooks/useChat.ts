@@ -1,10 +1,10 @@
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useCallback } from 'react';
 import type {
   ChatController,
   Message,
   ContentPart,
   SendOpts,
-} from "@buildlayer/ai-core";
+} from '../core/mocks/ai-core';
 
 export function useChat(chatController: ChatController) {
   const unsubscribeRef = useRef<(() => void) | null>(null);
@@ -25,13 +25,6 @@ export function useChat(chatController: ChatController) {
   const send = useCallback(
     async (input: string | ContentPart[], opts?: SendOpts) => {
       await chatController.send(input, opts);
-    },
-    [chatController]
-  );
-
-  const runTool = useCallback(
-    async (call: { name: string; args: any; id: string }) => {
-      await chatController.runTool(call);
     },
     [chatController]
   );
@@ -61,15 +54,13 @@ export function useChat(chatController: ChatController) {
 
   return {
     // State
-    sessionId: chatController?.sessionId || "",
+    sessionId: chatController?.sessionId || '',
     messages: chatController?.messages || [],
-    status: chatController?.status || "idle",
-    currentToolCall: chatController?.currentToolCall || null,
+    status: chatController?.status || 'idle',
     error: chatController?.error || null,
 
     // Actions
     send,
-    runTool,
     stop,
     reset,
     importHistory,

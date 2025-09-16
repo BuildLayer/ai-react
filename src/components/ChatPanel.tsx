@@ -1,9 +1,9 @@
-import React from "react";
-import { MessageList } from "./MessageList";
-import { Composer } from "./Composer";
-import { ChatHeader } from "./ChatHeader";
-import { useApp } from "../contexts/AppContext";
-import type { ChatController } from "@buildlayer/ai-core";
+import React from 'react';
+import { MessageList } from './MessageList';
+import { Composer } from './Composer';
+import { ChatHeader } from './ChatHeader';
+import { useApp } from '../contexts/AppContextNew';
+import type { ChatController } from '../core/mocks/ai-core';
 
 export interface ChatPanelProps {
   chatController: ChatController;
@@ -14,7 +14,7 @@ export interface ChatPanelProps {
 export function ChatPanel({
   chatController,
   model,
-  className = "",
+  className = '',
 }: ChatPanelProps) {
   const { state } = useApp();
 
@@ -22,12 +22,12 @@ export function ChatPanel({
   const getDisabledState = () => {
     const reasons: string[] = [];
 
-    if (!model || model.trim() === "") {
-      reasons.push("Model not selected");
+    if (!model || model.trim() === '') {
+      reasons.push('Model not selected');
     }
 
     if (!state.isConnected) {
-      reasons.push("Not connected to AI service");
+      reasons.push('Not connected to AI service');
     }
 
     if (state.error) {
@@ -49,7 +49,7 @@ export function ChatPanel({
   return (
     <div
       className={`flex flex-col h-full max-w-4xl mx-auto ${className}`}
-      style={{ height: "100%" }}
+      style={{ height: '100%' }}
     >
       <ChatHeader
         chatController={chatController}
@@ -57,13 +57,13 @@ export function ChatPanel({
       />
 
       <div
-        className="flex-1 overflow-hidden overflow-y-auto"
+        className='flex-1 overflow-hidden overflow-y-auto'
         style={{ minHeight: 0 }}
       >
         <MessageList chatController={chatController} />
       </div>
 
-      <div className="p-3 md:p-4">
+      <div className='p-3 md:p-4'>
         <Composer
           chatController={chatController}
           model={model}

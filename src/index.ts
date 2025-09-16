@@ -31,7 +31,7 @@ export {
 } from './components/ThemeProvider';
 
 // Legacy contexts (to be deprecated)
-export { AppProvider, useApp } from './contexts/AppContext';
+export { AppProvider, useApp } from './contexts/AppContextNew';
 export {
   MobileNavProvider,
   useMobileNav,

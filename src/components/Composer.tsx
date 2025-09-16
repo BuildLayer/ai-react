@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
-import type { ChatController } from "@buildlayer/ai-core";
-import { useTheme } from "./ThemeProvider";
+import React, { useState, useRef, useEffect } from 'react';
+import type { ChatController } from '../core/mocks/ai-core';
+import { useTheme } from './ThemeProvider';
 
 export interface ComposerProps {
   chatController: ChatController;
@@ -14,18 +14,18 @@ export interface ComposerProps {
 export function Composer({
   chatController,
   model,
-  className = "",
-  placeholder = "Type your message...",
+  className = '',
+  placeholder = 'Type your message...',
   disabled = false,
   disabledReasons = [],
 }: ComposerProps) {
-  const [input, setInput] = useState("");
-  const [status, setStatus] = useState(chatController?.status || "idle");
+  const [input, setInput] = useState('');
+  const [status, setStatus] = useState(chatController?.status || 'idle');
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { stop } = chatController || {};
   const { theme } = useTheme();
 
-  const isStreaming = status === "streaming";
+  const isStreaming = status === 'streaming';
 
   // Subscribe to ChatStore status changes
   useEffect(() => {
@@ -44,17 +44,17 @@ export function Composer({
     if (!input.trim() || isStreaming || !chatController) return;
 
     const message = input.trim();
-    setInput("");
+    setInput('');
 
     try {
       await chatController.send(message, { model });
     } catch (error) {
-      console.error("Error sending message:", error);
+      console.error('Error sending message:', error);
     }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter" && !e.shiftKey) {
+    if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       handleSubmit(e);
     }
@@ -63,7 +63,7 @@ export function Composer({
   // Auto-resize textarea
   useEffect(() => {
     if (textareaRef.current) {
-      textareaRef.current.style.height = "auto";
+      textareaRef.current.style.height = 'auto';
       const scrollHeight = textareaRef.current.scrollHeight;
       const minHeight = 56; // minHeight from style
       textareaRef.current.style.height = `${Math.max(
@@ -76,93 +76,93 @@ export function Composer({
   return (
     <form onSubmit={handleSubmit} className={`${className}`}>
       <div
-        style={{ position: "relative", display: "inline-block", width: "100%" }}
+        style={{ position: 'relative', display: 'inline-block', width: '100%' }}
       >
         {/* Show disabled reasons below the input */}
         {disabled && disabledReasons.length > 0 && (
-          <div className="mt-2 text-xs text-red-400 flex items-center gap-1">
-            <span>{disabledReasons.join(" • ")}</span>
+          <div className='mt-2 text-xs text-red-400 flex items-center gap-1'>
+            <span>{disabledReasons.join(' • ')}</span>
           </div>
         )}
 
         <textarea
           ref={textareaRef}
           value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={e => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
           disabled={disabled || isStreaming}
-          className="w-full resize-none focus:outline-none disabled:opacity-50"
+          className='w-full resize-none focus:outline-none disabled:opacity-50'
           rows={1}
           maxLength={4000}
           style={{
-            position: "relative",
+            position: 'relative',
             zIndex: 1,
-            width: "100%",
-            padding: "20px 100px 20px 16px",
-            minHeight: "56px",
-            height: "auto",
-            overflow: "hidden",
+            width: '100%',
+            padding: '20px 100px 20px 16px',
+            minHeight: '56px',
+            height: 'auto',
+            overflow: 'hidden',
           }}
         />
 
         <div
           style={{
-            position: "absolute",
-            top: "50%",
-            right: "12px",
-            transform: "translateY(-50%)",
-            display: "flex",
-            alignItems: "center",
-            gap: "8px",
+            position: 'absolute',
+            top: '50%',
+            right: '12px',
+            transform: 'translateY(-50%)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
             zIndex: 2,
           }}
         >
           {isStreaming && (
             <button
-              type="button"
+              type='button'
               onClick={() => stop()}
-              className="px-3 py-1 text-xs bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+              className='px-3 py-1 text-xs bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2'
             >
               Stop
             </button>
           )}
 
           <button
-            type="submit"
+            type='submit'
             disabled={!input.trim() || isStreaming || disabled}
-            className="px-3 py-1 text-xs focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            className='px-3 py-1 text-xs focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed'
             style={{
               backgroundColor:
                 !input.trim() || isStreaming || disabled
-                  ? "#4d4d4d"
-                  : "#00b894",
-              border: "1px solid",
+                  ? '#4d4d4d'
+                  : '#00b894',
+              border: '1px solid',
               borderColor:
                 !input.trim() || isStreaming || disabled
-                  ? "#4d4d4d"
-                  : "#00b894",
-              color: theme === "dark" ? "#ffffff" : "#000000",
+                  ? '#4d4d4d'
+                  : '#00b894',
+              color: theme === 'dark' ? '#ffffff' : '#000000',
             }}
-            onMouseEnter={(e) => {
+            onMouseEnter={e => {
               if (!(!input.trim() || isStreaming || disabled)) {
-                e.currentTarget.style.backgroundColor = "#00a085";
-                e.currentTarget.style.borderColor = "#00a085";
+                e.currentTarget.style.backgroundColor = '#00a085';
+                e.currentTarget.style.borderColor = '#00a085';
               }
             }}
-            onMouseLeave={(e) => {
+            onMouseLeave={e => {
               if (!(!input.trim() || isStreaming || disabled)) {
-                e.currentTarget.style.backgroundColor = "#00b894";
-                e.currentTarget.style.borderColor = "#00b894";
+                e.currentTarget.style.backgroundColor = '#00b894';
+                e.currentTarget.style.borderColor = '#00b894';
               }
             }}
             title={
               disabled && disabledReasons.length > 0
-                ? disabledReasons.join(", ")
+                ? disabledReasons.join(', ')
                 : undefined
             }
           >
-            {isStreaming ? "..." : "Send"}
+            {isStreaming ? '...' : 'Send'}
           </button>
         </div>
       </div>

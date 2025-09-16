@@ -4,16 +4,15 @@ import React, {
   useEffect,
   useState,
   ReactNode,
-} from "react";
+} from 'react';
 import {
   ChatStore,
-  weatherTool,
   ProviderConfig,
   createProviderAdapter,
   validateProviderConfig,
   getAvailableProviders,
   getAvailableModels,
-} from "@buildlayer/ai-core";
+} from '../core/mocks/ai-core';
 
 export interface AppState {
   isInitialized: boolean;
@@ -56,10 +55,10 @@ export function AppProvider({ children }: AppProviderProps) {
     isInitialized: false,
     isConnected: false,
     selectedProvider: {
-      name: "",
-      type: "",
+      name: '',
+      type: '',
     },
-    selectedModel: "",
+    selectedModel: '',
     selectedApiKey: undefined,
     selectedBaseURL: undefined,
     chatController: null,
@@ -73,13 +72,13 @@ export function AppProvider({ children }: AppProviderProps) {
     loadAvailableProviders();
 
     // Load saved settings
-    const savedProvider = localStorage.getItem("ai-provider");
-    const savedModel = localStorage.getItem("ai-model");
-    const savedApiKey = localStorage.getItem("ai-api-key") || "";
-    const savedBaseURL = localStorage.getItem("ai-base-url") || "";
+    const savedProvider = localStorage.getItem('ai-provider');
+    const savedModel = localStorage.getItem('ai-model');
+    const savedApiKey = localStorage.getItem('ai-api-key') || '';
+    const savedBaseURL = localStorage.getItem('ai-base-url') || '';
 
     if (savedProvider && savedModel) {
-      setState((prev) => ({
+      setState(prev => ({
         ...prev,
         selectedProvider: JSON.parse(savedProvider),
         selectedModel: savedModel,
@@ -91,18 +90,18 @@ export function AppProvider({ children }: AppProviderProps) {
       // Auto-connect if we have saved settings
       const providerConfig: ProviderConfig = {
         provider: JSON.parse(savedProvider).type as
-          | "openai"
-          | "anthropic"
-          | "mistral"
-          | "grok"
-          | "local",
+          | 'openai'
+          | 'anthropic'
+          | 'mistral'
+          | 'grok'
+          | 'local',
         apiKey: savedApiKey,
         model: savedModel,
         baseURL: savedBaseURL || undefined,
       };
       connect(providerConfig).catch(console.error);
     } else {
-      setState((prev) => ({
+      setState(prev => ({
         ...prev,
         isInitialized: true,
       }));
@@ -112,19 +111,19 @@ export function AppProvider({ children }: AppProviderProps) {
   const loadAvailableProviders = async () => {
     try {
       const providers = getAvailableProviders();
-      setState((prev) => ({
+      setState(prev => ({
         ...prev,
         availableProviders: providers,
       }));
     } catch (error) {
-      console.error("Failed to load providers:", error);
+      console.error('Failed to load providers:', error);
     }
   };
 
   const loadAvailableModels = async (provider: string) => {
     // Don't load models for local LLM
-    if (provider === "local") {
-      setState((prev) => ({
+    if (provider === 'local') {
+      setState(prev => ({
         ...prev,
         availableModels: [],
       }));
@@ -133,13 +132,13 @@ export function AppProvider({ children }: AppProviderProps) {
 
     try {
       const models = await getAvailableModels(provider);
-      setState((prev) => ({
+      setState(prev => ({
         ...prev,
         availableModels: models,
       }));
     } catch (error) {
-      console.error("Failed to load models:", error);
-      setState((prev) => ({
+      console.error('Failed to load models:', error);
+      setState(prev => ({
         ...prev,
         availableModels: [],
       }));
@@ -148,13 +147,13 @@ export function AppProvider({ children }: AppProviderProps) {
 
   const connect = async (config: ProviderConfig) => {
     try {
-      setState((prev) => ({ ...prev, error: null }));
+      setState(prev => ({ ...prev, error: null }));
 
       // Validate configuration
       const validation = validateProviderConfig(config);
       if (!validation.valid) {
         throw new Error(
-          `Invalid configuration: ${validation.errors.join(", ")}`
+          `Invalid configuration: ${validation.errors.join(', ')}`
         );
       }
 
@@ -163,15 +162,15 @@ export function AppProvider({ children }: AppProviderProps) {
       const chatController = new ChatStore(adapter);
 
       // Register tools
-      chatController.registerTool(weatherTool);
+      // No pro features in regular SDK
 
       // Find provider info for display
       const providerNames: Record<string, string> = {
-        openai: "OpenAI",
-        anthropic: "Anthropic",
-        mistral: "Mistral",
-        grok: "Grok",
-        local: "Local LLM",
+        openai: 'OpenAI',
+        anthropic: 'Anthropic',
+        mistral: 'Mistral',
+        grok: 'Grok',
+        local: 'Local LLM',
       };
 
       const providerInfo = {
@@ -182,16 +181,16 @@ export function AppProvider({ children }: AppProviderProps) {
       };
 
       // Save settings
-      localStorage.setItem("ai-provider", JSON.stringify(providerInfo));
-      localStorage.setItem("ai-model", config.model);
+      localStorage.setItem('ai-provider', JSON.stringify(providerInfo));
+      localStorage.setItem('ai-model', config.model);
       if (config.apiKey) {
-        localStorage.setItem("ai-api-key", config.apiKey);
+        localStorage.setItem('ai-api-key', config.apiKey);
       }
       if (config.baseURL) {
-        localStorage.setItem("ai-base-url", config.baseURL);
+        localStorage.setItem('ai-base-url', config.baseURL);
       }
 
-      setState((prev) => ({
+      setState(prev => ({
         ...prev,
         isConnected: true,
         selectedProvider: providerInfo,
@@ -203,7 +202,7 @@ export function AppProvider({ children }: AppProviderProps) {
       }));
 
       // Load messages from localStorage after chatController is set in state
-      const savedMessages = localStorage.getItem("ai-messages");
+      const savedMessages = localStorage.getItem('ai-messages');
       if (savedMessages) {
         try {
           const messages = JSON.parse(savedMessages);
@@ -211,7 +210,7 @@ export function AppProvider({ children }: AppProviderProps) {
           // Use the proper importHistory method instead of direct manipulation
           chatController.importHistory(messages);
         } catch (error) {
-          console.error("Failed to load messages from localStorage:", error);
+          console.error('Failed to load messages from localStorage:', error);
         }
       }
 
@@ -223,21 +222,21 @@ export function AppProvider({ children }: AppProviderProps) {
           const status = chatController.status;
 
           // Only save when not streaming or when streaming is complete
-          if (status !== "streaming" || messages.length > 0) {
+          if (status !== 'streaming' || messages.length > 0) {
             // Clear previous timeout
             if (saveTimeout) {
               clearTimeout(saveTimeout);
             }
 
             // Use longer debounce during streaming to prevent too frequent writes
-            const debounceDelay = status === "streaming" ? 500 : 100;
+            const debounceDelay = status === 'streaming' ? 500 : 100;
 
             saveTimeout = setTimeout(() => {
-              localStorage.setItem("ai-messages", JSON.stringify(messages));
+              localStorage.setItem('ai-messages', JSON.stringify(messages));
             }, debounceDelay);
           }
         } catch (error) {
-          console.error("Failed to save messages to localStorage:", error);
+          console.error('Failed to save messages to localStorage:', error);
         }
       });
 
@@ -245,9 +244,9 @@ export function AppProvider({ children }: AppProviderProps) {
       (chatController as any)._unsubscribe = unsubscribe;
       (chatController as any)._saveTimeout = saveTimeout;
     } catch (error) {
-      setState((prev) => ({
+      setState(prev => ({
         ...prev,
-        error: error instanceof Error ? error.message : "Connection failed",
+        error: error instanceof Error ? error.message : 'Connection failed',
       }));
     }
   };
@@ -259,9 +258,9 @@ export function AppProvider({ children }: AppProviderProps) {
   ) => {
     const config: ProviderConfig = {
       provider: provider as any,
-      apiKey: apiKey || "",
+      apiKey: apiKey || '',
       model: model,
-      baseURL: provider === "local" ? "http://localhost:11434/v1" : undefined,
+      baseURL: provider === 'local' ? 'http://localhost:11434/v1' : undefined,
     };
     return connect(config);
   };
@@ -277,7 +276,7 @@ export function AppProvider({ children }: AppProviderProps) {
       clearTimeout((state.chatController as any)._saveTimeout);
     }
 
-    setState((prev) => ({
+    setState(prev => ({
       ...prev,
       isConnected: false,
       chatController: null,
@@ -285,15 +284,15 @@ export function AppProvider({ children }: AppProviderProps) {
     }));
 
     // Clear saved settings and messages
-    localStorage.removeItem("ai-provider");
-    localStorage.removeItem("ai-model");
-    localStorage.removeItem("ai-api-key");
-    localStorage.removeItem("ai-base-url");
-    localStorage.removeItem("ai-messages");
+    localStorage.removeItem('ai-provider');
+    localStorage.removeItem('ai-model');
+    localStorage.removeItem('ai-api-key');
+    localStorage.removeItem('ai-base-url');
+    localStorage.removeItem('ai-messages');
   };
 
   const clearError = () => {
-    setState((prev) => ({ ...prev, error: null }));
+    setState(prev => ({ ...prev, error: null }));
   };
 
   return (
@@ -316,7 +315,7 @@ export function AppProvider({ children }: AppProviderProps) {
 export function useApp() {
   const context = useContext(AppContext);
   if (context === undefined) {
-    throw new Error("useApp must be used within an AppProvider");
+    throw new Error('useApp must be used within an AppProvider');
   }
   return context;
 }

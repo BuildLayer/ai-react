@@ -1,43 +1,43 @@
-import React, { useState, useEffect } from "react";
-import { useApp } from "../contexts/AppContext";
-import type { ProviderConfig } from "@buildlayer/ai-core";
+import React, { useState, useEffect } from 'react';
+import { useApp } from '../contexts/AppContextNew';
+import type { ProviderConfig } from '../core/mocks/ai-core';
 
 export interface ConnectionSettingsProps {
   className?: string;
 }
 
 export function ConnectionSettings({
-  className = "",
+  className = '',
 }: ConnectionSettingsProps) {
   const { state, connect, disconnect, loadAvailableModels } = useApp();
 
   const providerNames: Record<string, string> = {
-    openai: "OpenAI",
-    anthropic: "Anthropic",
-    mistral: "Mistral",
-    grok: "Grok",
-    local: "Local LLM",
+    openai: 'OpenAI',
+    anthropic: 'Anthropic',
+    mistral: 'Mistral',
+    grok: 'Grok',
+    local: 'Local LLM',
   };
   const [isOpen, setIsOpen] = useState(false);
   const [config, setConfig] = useState<ProviderConfig>({
-    provider: "openai",
-    apiKey: "",
-    model: "",
-    baseURL: "",
+    provider: 'openai',
+    apiKey: '',
+    model: '',
+    baseURL: '',
   });
 
   useEffect(() => {
     if (state.isConnected) {
       setConfig({
         provider: state.selectedProvider.type as
-          | "openai"
-          | "anthropic"
-          | "mistral"
-          | "grok"
-          | "local",
-        apiKey: state.selectedApiKey || "",
+          | 'openai'
+          | 'anthropic'
+          | 'mistral'
+          | 'grok'
+          | 'local',
+        apiKey: state.selectedApiKey || '',
         model: state.selectedModel,
-        baseURL: state.selectedBaseURL || "",
+        baseURL: state.selectedBaseURL || '',
       });
     }
   }, [
@@ -49,22 +49,22 @@ export function ConnectionSettings({
   ]);
 
   useEffect(() => {
-    if (config.provider && config.provider !== "local" && config.apiKey) {
+    if (config.provider && config.provider !== 'local' && config.apiKey) {
       loadAvailableModels(config.provider);
     }
   }, [config.provider, config.apiKey]);
 
   const handleProviderChange = (provider: string) => {
-    setConfig((prev) => ({
+    setConfig(prev => ({
       ...prev,
       provider: provider as
-        | "openai"
-        | "anthropic"
-        | "mistral"
-        | "grok"
-        | "local",
-      model: "",
-      baseURL: provider === "local" ? "http://localhost:11434/v1" : "",
+        | 'openai'
+        | 'anthropic'
+        | 'mistral'
+        | 'grok'
+        | 'local',
+      model: '',
+      baseURL: provider === 'local' ? 'http://localhost:11434/v1' : '',
     }));
   };
 
@@ -73,7 +73,7 @@ export function ConnectionSettings({
       await connect(config);
       setIsOpen(false);
     } catch (error) {
-      console.error("Connection failed:", error);
+      console.error('Connection failed:', error);
     }
   };
 
@@ -85,38 +85,38 @@ export function ConnectionSettings({
   return (
     <div className={className}>
       {/* Connection Status */}
-      <div className="flex flex-col lg:flex-row items-start lg:items-center gap-2 lg:gap-x-2">
+      <div className='flex flex-col lg:flex-row items-start lg:items-center gap-2 lg:gap-x-2'>
         {state.isConnected ? (
           <>
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-x-2">
-              <div className="flex items-center gap-x-2">
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                <span className="text-sm text-muted-foreground">
+            <div className='flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-x-2'>
+              <div className='flex items-center gap-x-2'>
+                <div className='w-2 h-2 bg-green-500 rounded-full'></div>
+                <span className='text-sm text-muted-foreground'>
                   Connected to {state.selectedProvider.name}
                 </span>
               </div>
-              <span className="text-xs text-muted-foreground">
+              <span className='text-xs text-muted-foreground'>
                 ({state.selectedModel})
               </span>
             </div>
             <button
               onClick={handleDisconnect}
-              className="w-full sm:w-auto px-2 py-1 text-xs text-muted-foreground hover:text-foreground transition-colors"
+              className='w-full sm:w-auto px-2 py-1 text-xs text-muted-foreground hover:text-foreground transition-colors'
             >
               Disconnect
             </button>
           </>
         ) : (
-          <div className="w-full sm:w-auto flex flex-col lg:flex-row items-start lg:items-center gap-2 lg:gap-x-2">
-            <div className="flex items-center gap-x-2">
-              <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-              <span className="text-sm text-muted-foreground">
+          <div className='w-full sm:w-auto flex flex-col lg:flex-row items-start lg:items-center gap-2 lg:gap-x-2'>
+            <div className='flex items-center gap-x-2'>
+              <div className='w-2 h-2 bg-red-500 rounded-full'></div>
+              <span className='text-sm text-muted-foreground'>
                 Not connected
               </span>
             </div>
             <button
               onClick={() => setIsOpen(true)}
-              className="w-full sm:w-auto px-2 py-1 text-xs bg-primary text-primary-foreground rounded hover:bg-primary/90 transition-colors"
+              className='w-full sm:w-auto px-2 py-1 text-xs bg-primary text-primary-foreground rounded hover:bg-primary/90 transition-colors'
             >
               Connect
             </button>
@@ -126,84 +126,84 @@ export function ConnectionSettings({
 
       {/* Connection Modal */}
       {isOpen && (
-        <div className="fixed inset-0 modal-overlay flex items-center justify-center z-50">
-          <div className="modal-content p-6 w-full max-w-md mx-4">
-            <h3 className="text-lg font-semibold !mb-4">
+        <div className='fixed inset-0 modal-overlay flex items-center justify-center z-50'>
+          <div className='modal-content p-6 w-full max-w-md mx-4'>
+            <h3 className='text-lg font-semibold !mb-4'>
               Connect to AI Provider
             </h3>
 
-            <div className="space-y-4">
+            <div className='space-y-4'>
               {/* Provider Selection */}
               <div>
-                <label className="block text-sm font-medium mb-2">
+                <label className='block text-sm font-medium mb-2'>
                   Provider
                 </label>
                 <select
                   value={config.provider}
-                  onChange={(e) => handleProviderChange(e.target.value)}
-                  className="w-full p-2 modal-input"
+                  onChange={e => handleProviderChange(e.target.value)}
+                  className='w-full p-2 modal-input'
                 >
-                  <option value="local">Local LLM (No API key required)</option>
+                  <option value='local'>Local LLM (No API key required)</option>
                   {state.availableProviders
-                    .filter((p) => p !== "local")
-                    .map((provider) => (
+                    .filter(p => p !== 'local')
+                    .map(provider => (
                       <option key={provider} value={provider}>
                         {providerNames[provider] || provider}
                       </option>
                     ))}
                 </select>
-                {!config.apiKey && config.provider !== "local" && (
-                  <p className="text-xs text-muted-foreground mt-1">
+                {!config.apiKey && config.provider !== 'local' && (
+                  <p className='text-xs text-muted-foreground mt-1'>
                     Enter API key to load models
                   </p>
                 )}
               </div>
 
-              {config.provider !== "local" && (
+              {config.provider !== 'local' && (
                 <div>
-                  <label className="block text-sm font-medium mb-2">
+                  <label className='block text-sm font-medium mb-2'>
                     API Key
                   </label>
                   <input
-                    type="password"
+                    type='password'
                     value={config.apiKey}
-                    onChange={(e) =>
-                      setConfig((prev) => ({ ...prev, apiKey: e.target.value }))
+                    onChange={e =>
+                      setConfig(prev => ({ ...prev, apiKey: e.target.value }))
                     }
-                    placeholder="Enter your API key"
-                    className="w-full p-2 modal-input"
+                    placeholder='Enter your API key'
+                    className='w-full p-2 modal-input'
                   />
                 </div>
               )}
 
               {/* Model Selection */}
               <div>
-                <label className="block text-sm font-medium mb-2">Model</label>
-                {config.provider === "local" ? (
+                <label className='block text-sm font-medium mb-2'>Model</label>
+                {config.provider === 'local' ? (
                   <input
-                    type="text"
+                    type='text'
                     value={config.model}
-                    onChange={(e) =>
-                      setConfig((prev) => ({ ...prev, model: e.target.value }))
+                    onChange={e =>
+                      setConfig(prev => ({ ...prev, model: e.target.value }))
                     }
-                    placeholder="Enter model name"
-                    className="w-full p-2 modal-input"
+                    placeholder='Enter model name'
+                    className='w-full p-2 modal-input'
                   />
                 ) : (
                   <select
                     value={config.model}
-                    onChange={(e) =>
-                      setConfig((prev) => ({ ...prev, model: e.target.value }))
+                    onChange={e =>
+                      setConfig(prev => ({ ...prev, model: e.target.value }))
                     }
                     disabled={
                       !config.provider ||
-                      ((config.provider as string) !== "local" &&
+                      ((config.provider as string) !== 'local' &&
                         !config.apiKey)
                     }
-                    className="w-full p-2 modal-input disabled:opacity-50 disabled:cursor-not-allowed"
+                    className='w-full p-2 modal-input disabled:opacity-50 disabled:cursor-not-allowed'
                   >
-                    <option value="">Select a model</option>
-                    {state.availableModels.map((model) => (
+                    <option value=''>Select a model</option>
+                    {state.availableModels.map(model => (
                       <option key={model.id} value={model.id}>
                         {model.name} ({model.id})
                       </option>
@@ -211,58 +211,58 @@ export function ConnectionSettings({
                   </select>
                 )}
                 {!config.provider && (
-                  <p className="text-xs text-muted-foreground mt-1">
+                  <p className='text-xs text-muted-foreground mt-1'>
                     Select a provider first
                   </p>
                 )}
-                {config.provider === "local" && (
-                  <p className="text-xs text-muted-foreground mt-1">
+                {config.provider === 'local' && (
+                  <p className='text-xs text-muted-foreground mt-1'>
                     Enter model name (e.g., llama2, codellama, mistral)
                   </p>
                 )}
                 {config.provider &&
-                  config.provider !== "local" &&
+                  config.provider !== 'local' &&
                   !config.apiKey && (
-                    <p className="text-xs text-muted-foreground mt-1">
+                    <p className='text-xs text-muted-foreground mt-1'>
                       Enter API key to load models
                     </p>
                   )}
               </div>
 
               {/* Base URL (for local LLMs) */}
-              {config.provider === "local" && (
+              {config.provider === 'local' && (
                 <div>
-                  <label className="block text-sm font-medium mb-2">
+                  <label className='block text-sm font-medium mb-2'>
                     Base URL
                   </label>
                   <input
-                    type="url"
+                    type='url'
                     value={config.baseURL}
-                    onChange={(e) =>
-                      setConfig((prev) => ({
+                    onChange={e =>
+                      setConfig(prev => ({
                         ...prev,
                         baseURL: e.target.value,
                       }))
                     }
-                    placeholder="http://localhost:11434/v1"
-                    className="w-full p-2 modal-input"
+                    placeholder='http://localhost:11434/v1'
+                    className='w-full p-2 modal-input'
                   />
                 </div>
               )}
 
               {/* Error Display */}
               {state.error && (
-                <div className="p-3 bg-destructive/10 border border-destructive/20">
-                  <p className="text-sm text-destructive">{state.error}</p>
+                <div className='p-3 bg-destructive/10 border border-destructive/20'>
+                  <p className='text-sm text-destructive'>{state.error}</p>
                 </div>
               )}
             </div>
 
             {/* Actions */}
-            <div className="flex justify-end gap-x-2 mt-6">
+            <div className='flex justify-end gap-x-2 mt-6'>
               <button
                 onClick={() => setIsOpen(false)}
-                className="px-4 py-2 text-sm modal-button-secondary transition-colors"
+                className='px-4 py-2 text-sm modal-button-secondary transition-colors'
               >
                 Cancel
               </button>
@@ -270,9 +270,9 @@ export function ConnectionSettings({
                 onClick={handleConnect}
                 disabled={
                   !config.model ||
-                  (config.provider !== "local" && !config.apiKey)
+                  (config.provider !== 'local' && !config.apiKey)
                 }
-                className="px-4 py-2 text-sm modal-button-primary disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className='px-4 py-2 text-sm modal-button-primary disabled:opacity-50 disabled:cursor-not-allowed transition-colors'
               >
                 Connect
               </button>

@@ -1,8 +1,8 @@
-import React from "react";
-import { useApp } from "../contexts/AppContext";
-import { useMobileNav } from "../contexts/MobileNavContext";
-import { ThemeSwitcher } from "./ThemeSwitcher";
-import { ConnectionSettings } from "./ConnectionSettings";
+import React from 'react';
+import { useApp } from '../contexts/AppContextNew';
+import { useMobileNav } from '../contexts/MobileNavContext';
+import { ThemeSwitcher } from './ThemeSwitcher';
+import { ConnectionSettings } from './ConnectionSettings';
 
 export interface MobileNavProps {
   className?: string;
@@ -11,7 +11,7 @@ export interface MobileNavProps {
 }
 
 export function MobileNav({
-  className = "",
+  className = '',
   showButton = true,
   showPanel = true,
 }: MobileNavProps) {
@@ -24,24 +24,24 @@ export function MobileNav({
       {showButton && (
         <button
           onClick={toggleMenu}
-          className="lg:hidden p-2"
-          aria-label="Toggle mobile menu"
+          className='lg:hidden p-2'
+          aria-label='Toggle mobile menu'
           aria-expanded={isOpen}
         >
-          <div className="w-6 h-6 flex flex-col justify-center space-y-1">
+          <div className='w-6 h-6 flex flex-col justify-center space-y-1'>
             <span
               className={`block h-0.5 w-6 bg-current transition-all duration-300 ${
-                isOpen ? "rotate-45 translate-y-1.5" : ""
+                isOpen ? 'rotate-45 translate-y-1.5' : ''
               }`}
             />
             <span
               className={`block h-0.5 w-6 bg-current transition-all duration-300 ${
-                isOpen ? "opacity-0" : ""
+                isOpen ? 'opacity-0' : ''
               }`}
             />
             <span
               className={`block h-0.5 w-6 bg-current transition-all duration-300 ${
-                isOpen ? "-rotate-45 -translate-y-1.5" : ""
+                isOpen ? '-rotate-45 -translate-y-1.5' : ''
               }`}
             />
           </div>
@@ -52,22 +52,22 @@ export function MobileNav({
       {showPanel && (
         <div
           className={`fixed top-14 left-0 right-0 bottom-0 bg-primary border-b border-primary transform transition-transform duration-300 ease-in-out lg:hidden z-40 ${
-            isOpen ? "translate-y-0" : "-translate-y-full"
+            isOpen ? 'translate-y-0' : '-translate-y-full'
           } ${className}`}
         >
-          <div className="h-full overflow-y-auto">
-            <div className="p-8 space-y-6">
+          <div className='h-full overflow-y-auto'>
+            <div className='p-8 space-y-6'>
               {/* Connection Settings */}
-              <div className="space-y-3">
-                <h3 className="text-sm font-medium text-secondary uppercase tracking-wide">
+              <div className='space-y-3'>
+                <h3 className='text-sm font-medium text-secondary uppercase tracking-wide'>
                   Connection
                 </h3>
                 <ConnectionSettings />
               </div>
 
               {/* Theme Settings */}
-              <div className="space-y-3">
-                <h3 className="text-sm font-medium text-secondary uppercase tracking-wide">
+              <div className='space-y-3'>
+                <h3 className='text-sm font-medium text-secondary uppercase tracking-wide'>
                   Appearance
                 </h3>
                 <ThemeSwitcher />

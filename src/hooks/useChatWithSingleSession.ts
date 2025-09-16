@@ -1,5 +1,5 @@
-import { useEffect, useCallback, useRef, useState } from "react";
-import type { ChatController, Message } from "@buildlayer/ai-core";
+import { useEffect, useCallback, useRef, useState } from 'react';
+import type { ChatController, Message } from '../core/mocks/ai-core';
 
 export interface SingleChatSession {
   id: string;
@@ -9,7 +9,7 @@ export interface SingleChatSession {
   updatedAt: number;
 }
 
-const STORAGE_KEY = "ai-react-session";
+const STORAGE_KEY = 'ai-react-session';
 
 export function useChatWithSingleSession(chatController: ChatController) {
   const [session, setSession] = useState<SingleChatSession | null>(null);
@@ -29,14 +29,14 @@ export function useChatWithSingleSession(chatController: ChatController) {
         const parsedSession = JSON.parse(savedSession);
         setSession(parsedSession);
       } catch (error) {
-        console.error("Failed to parse saved session:", error);
+        console.error('Failed to parse saved session:', error);
         setSession(null);
       }
     } else {
       // Create initial session if none exists
       const newSession: SingleChatSession = {
-        id: "single-session",
-        name: "Chat",
+        id: 'single-session',
+        name: 'Chat',
         messages: [],
         createdAt: Date.now(),
         updatedAt: Date.now(),
@@ -67,7 +67,7 @@ export function useChatWithSingleSession(chatController: ChatController) {
       return;
     }
 
-    const unsubscribe = chatController.subscribe((state) => {
+    const unsubscribe = chatController.subscribe((state: any) => {
       // Skip save if we're currently importing history
       if (isImportingRef.current) {
         return;
@@ -81,7 +81,7 @@ export function useChatWithSingleSession(chatController: ChatController) {
       // 2. Status is error (to save any partial messages)
       // 3. We have new messages (message count changed)
       const shouldSave =
-        state.status === "idle" || state.status === "error" || hasNewMessages;
+        state.status === 'idle' || state.status === 'error' || hasNewMessages;
 
       if (shouldSave) {
         const now = Date.now();

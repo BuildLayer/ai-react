@@ -35,8 +35,7 @@ Experience the AI chat with pre-configured custom Local LLM support and all majo
 - [API Reference](#api-reference)
 - [Examples](#examples)
 - [Bug Reports & Feature Requests](#bug-reports--feature-requests)
-- [What's Included (OSS)](#whats-included-oss)
-- [What's Pro-Only](#whats-pro-only)
+- [What's Included](#whats-included)
 - [Framework-Specific Packages](#framework-specific-packages)
 - [License](#license)
 - [Acknowledgments](#acknowledgments)
@@ -447,7 +446,7 @@ function ChatWithPersistence() {
 }
 ```
 
-> **Note**: This is the OSS version with single session support. For multi-session management, use `@buildlayer/ai-react-pro` with `useSessionManager`.
+> **Note**: This version includes single session support with basic persistence.
 
 ### useApp
 
@@ -791,7 +790,7 @@ Found a bug or have a feature request? We'd love to hear from you!
 - **Feature Requests**: [Open an issue](https://github.com/BuildLayer/ai-react/issues/new?template=feature_request.md)
 - **General Discussion**: [GitHub Discussions](https://github.com/BuildLayer/ai-react/discussions)
 
-### What's Included (OSS)
+### What's Included
 
 This package includes basic chat UI components:
 
@@ -812,20 +811,7 @@ This package includes basic chat UI components:
 - ✅ `useThemeAwareStyle` - Theme-aware styling
 - ✅ `AppProvider` - Application context provider
 
-### What's Pro-Only
 
-Advanced features are available in `@buildlayer/ai-react-pro` (coming soon):
-
-- 🔒 Tool calling forms and UI
-- 🔒 Advanced themes (nebula, plasma, synthwave)
-- 🔒 Multi-session management (`useSessionManager`) - manage multiple chat sessions
-- 🔒 Advanced UX components
-- 🔒 Export/import functionality
-- 🔒 Advanced persistence adapters
-- 🔒 `runTool` functionality in `useChat`
-- 🔒 `currentToolCall` in chat state
-
-> **Note**: Pro-only features will be available in the separate `@buildlayer/ai-react-pro` package.
 
 ### Framework-Specific Packages
 
@@ -848,6 +834,5 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ## Made with ❤️ by the BuildLayer.dev team
 
-For advanced features like tool calling, session persistence, and premium themes, check out [@buildlayer/ai-react-pro](https://www.npmjs.com/package/@buildlayer/ai-react-pro) (coming soon).
 
 For Next.js support, use [@buildlayer/ai-nextjs](https://www.npmjs.com/package/@buildlayer/ai-nextjs) (coming soon).

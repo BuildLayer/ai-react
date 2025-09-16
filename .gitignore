@@ -11,3 +11,6 @@
 .cache
 .idea
 .git
+
+.DS_Store
+docs/
